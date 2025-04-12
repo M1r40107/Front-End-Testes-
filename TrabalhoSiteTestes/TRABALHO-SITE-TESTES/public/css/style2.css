@@ -1,0 +1,852 @@
+/* Reset básico de margens e preenchimentos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave para o tema */
+}
+
+/* Cabeçalho */
+header {
+    background: linear-gradient(to right, #232526, #414345);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.logo {
+    position: relative;
+    text-align: left;
+    right: 400px;
+    padding-right: 20px;
+}
+
+header .logo a {
+    text-decoration: none;
+}
+
+.logo h1 {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: rgba(23, 189, 240, 0.767);
+    transition: color 0.3s ease; /* Transição suave para o tema */
+}
+
+.logo p {
+    font-size: 18px;
+    opacity: 0.8;
+    transition: color 0.3s ease; /* Transição suave para o tema */
+}
+
+/* Navegação */
+nav {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav a {
+    position: relative;
+    text-decoration: none;
+    color: rgba(23, 189, 240, 0.767);
+    font-size: 17px;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+    font-weight: 800;
+}
+
+nav a:hover {
+    color: #ffa500;
+}
+
+
+/* Botões do cabeçalho */
+.buttons {
+    display: flex;
+    gap: 10px;
+    padding-right: 20px;
+}
+
+.buttons button {
+    background: #ffa500;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.buttons button:hover {
+    background: #45a049;
+}
+
+.buttons button:last-child { /* Estiliza o botão de configurações */
+    background: none;
+    color: white;
+    font-size: 24px;
+    border: none;
+    padding: 0;
+    margin-left: 10px;
+}
+
+.buttons button:last-child:hover {
+    color: #ffa500;
+}
+
+.impact-section {
+    position: relative;
+    background-color: transparent; /* Fundo transparente */
+    padding: 50px 0;
+    top: 150px;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave para o tema */
+    background-image: none; /* Tenta remover qualquer imagem de fundo */
+}
+
+
+/* Centralização de tudo não mexer */
+.banner:first-of-type {
+    position: relative;
+    width: 2000px;
+    top: 0px;
+    left: 0px;
+    width: 200px;
+    height: auto;
+    z-index: 10;
+}
+
+/* imagem assitencia tecnica*/
+.banner:first-of-type img {
+    position: relative;
+    left: 550px;
+    width: 400%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Cabeçalho -> fundo */
+.banner {
+    position: relative;
+    text-align: center;
+    margin: 50px 0;
+}
+
+/* textos overlay2 e h3 */
+.banner .overlay2 {
+    position: relative;
+    display: inline;
+    font-weight: bold;
+    white-space: nowrap;
+    top: 520px;
+    left: 390px;
+    font-size: 24px;
+    color: rgb(253, 249, 249);
+    border-radius: 100px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px 10px 10px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave para o tema */
+}
+
+.banner h3 {
+    position: relative;
+    top: 330px;
+    left: 0px;
+    height: auto;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 50px;
+    transition: color 0.3s ease; /* Transição suave para o tema */
+}
+
+/* Carrossel */
+.carousel-container {
+    position: relative;
+    width: 1200px; /* Ajuste conforme necessário */
+    overflow: hidden;
+    top: 350px;
+    margin: 0 auto;
+}
+
+/* Em style2.css */
+
+.carousel-images a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    flex: 0 0 50%;
+    box-sizing: border-box;
+    padding: 0 5px;
+}
+
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Garanta que a imagem não ultrapasse o container 'a' */
+.carousel-images a img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-height: 400px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-images a p {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease; /* Transição suave para o tema */
+}
+
+/* Overlay Rodapé */
+.buttons .button {
+    position: relative;
+    top: 500px;
+    left: 50%;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.808);
+}
+
+#over {
+    position: relative;
+    top: 450px;
+    right: 0px;
+    font-weight: bold;
+    font-size: 30px;
+    color: #232526;
+    background: none;
+    text-align: center;
+    line-height: 1.4;
+    transition: color 0.3s ease; /* Transição suave para o tema */
+}
+
+#over a {
+    text-decoration: none;
+    color: #232526;
+    transition: color 0.3s ease;
+}
+
+#over a:hover {
+    color: #ffa500;
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* Rodapé */
+footer {
+    position: relative;
+    top: 450px;
+    background: #232526;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave para o tema */
+}
+
+.footer-button {
+    background-color: #ffa500;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.footer-button:hover {
+    background-color: #ff8800;
+}
+
+.footer-link {
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s ease; /* Transição suave para o tema */
+}
+
+.footer-link:hover {
+    color: white;
+}
+
+footer p.copyright {
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    text-align: center;
+    width: 100%;
+    margin: 10px 0 0;
+    transition: color 0.3s ease; /* Transição suave para o tema */
+}
+
+/* Exemplo para posicionar cada botão */
+#sobre {
+    position: relative;
+    right: 800px;
+}
+
+#topo {
+    position: relative;
+    right: 70px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .buttons {
+        margin-top: 10px;
+    }
+
+    .banner:first-of-type {
+        position: relative;
+        left: 0;
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    .banner img {
+        width: 100%;
+    }
+
+    .carousel-container {
+        top: 350px;
+    }
+
+    .carousel-images img {
+        width: 90%;
+    }
+
+    .logo {
+        right: auto;
+        text-align: center;
+        padding-right: 0;
+        margin-bottom: 10px;
+    }
+
+    nav {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    nav a {
+        margin: 0 10px;
+    }
+
+    .buttons {
+        justify-content: center;
+    }
+}
+
+/* nova regra para a imagem fundo.png */
+.impact-container img {
+    position: relative;
+    top: 80px;
+    width: 60%;
+    height: auto;
+    border: 5px solid rgba(23, 189, 240, 0.767);
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos para a aba lateral de configurações */
+.settings-sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: #f8f8f8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    transition: right 0.3s ease-in-out, background-color 0.3s ease, color 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.settings-sidebar.open {
+    right: 0;
+}
+
+.settings-sidebar h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+    transition: color 0.3s ease; /* Transição suave para o tema */
+}
+
+.setting {
+    margin-bottom: 15px;
+}
+
+.setting label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s ease; /* Transição suave para o tema */
+}
+
+.setting input[type="number"],
+.setting select,
+.setting input[type="checkbox"],
+.setting button {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-left: 10px;
+    background-color: #fff;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Transição suave para o tema */
+}
+
+.setting button {
+    background-color: #ffa500;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.setting button#chatbot-button { /* Assumindo que o botão de logout tem o ID "logout-button" */
+    background-color: #ffa500; /* Cor vermelha */
+    color: white;
+}
+
+.setting button#chatbot-button:hover {
+    background-color: #18bdf0; /* Vermelho mais claro no hover */
+}
+
+.setting button#logout-button { /* Assumindo que o botão de logout tem o ID "logout-button" */
+    background-color: #ffa500; /* Cor vermelha */
+    color: white;
+}
+
+.setting button#logout-button:hover {
+    background-color: #f44336; /* Vermelho mais claro no hover */
+}
+
+.setting button:hover {
+    background-color: #45a049;
+}
+
+body.dark-theme .setting button:hover {
+    background-color: #45a049;
+}
+
+.close-sidebar-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px; /* Diminuindo o tamanho da fonte */
+    background-color: #ddd; /* Adicionando um fundo cinza claro */
+    color: #333;
+    border-radius: 5px; /* Arredondando as bordas (opcional) */
+    width: 25px; /* Definindo uma largura menor */
+    height: 25px; /* Definindo uma altura menor */
+    display: flex;
+    justify-content: center; /* Centralizando o "X" horizontalmente */
+    align-items: center; /* Centralizando o "X" verticalmente */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.close-sidebar-button:hover {
+    background-color: #f44336; /* Vermelho ao passar o mouse */
+    color: white;
+}
+
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.chatbot-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: left; /* Alinhar o texto à esquerda para os botões ficarem à direita */
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between; /* Espaço entre o título e os botões */
+    align-items: center;
+}
+
+.chatbot-header-buttons {
+    display: flex;
+}
+
+.chatbot-header-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 25px; /* Aumentando o tamanho da fonte para os botões */
+    margin-left: 10px; /* Aumentando um pouco o espaçamento */
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    opacity: 0.9; /* Deixando um pouco mais claro por padrão */
+}
+
+.chatbot-header-button:hover {
+    opacity: 1; /* Mais visível no hover */
+}
+
+.chatbot-messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-message, .bot-message {
+    background-color: #e9e9e9;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    max-width: 80%;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: white;
+}
+
+.chatbot-input {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    display: flex;
+}
+
+.chatbot-input input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.chatbot-input button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.chatbot-input button:hover {
+    background-color: #0056b3;
+}
+
+.chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+}
+
+.chatbot-toggle:hover {
+    background-color: #0056b3;
+}
+
+.chatbot-container.closed {
+    display: none;
+}
+
+.chatbot-container.maximized {
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+    bottom: auto;
+    right: auto;
+}
+
+.chatbot-container.maximized .chatbot-messages {
+    font-size: 1.2em; /* Aumenta a fonte quando maximizado */
+}
+
+body.dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-theme header {
+    background: linear-gradient(to right, #1c1c1c, #2b2b2b);
+    color: #e0e0e0;
+}
+
+body.dark-theme .logo h1 {
+    color: #18bdf0;
+}
+
+body.dark-theme .logo p {
+    color: #bbbbbb;
+}
+
+body.dark-theme nav a {
+    color: #18bdf0;
+}
+
+body.dark-theme nav a:hover {
+    color: #ffa500;
+}
+
+body.dark-theme .buttons button {
+    background-color: #ffa500;
+    color: white;
+}
+
+body.dark-theme .buttons button:hover {
+    background-color: #45a049;
+}
+
+body.dark-theme .buttons button:last-child {
+    background: none !important;
+    color: white;
+}
+
+
+body.dark-theme .buttons button:last-child:hover {
+    color: #ffa500;
+}
+
+body.dark-theme .impact-section {
+    color: #e0e0e0;
+}
+
+body.dark-theme .banner .overlay2 {
+    background: rgba(30, 30, 30, 0.8);
+    color: #f1f1f1;
+}
+
+body.dark-theme .banner h3 {
+    color: #f1f1f1;
+}
+
+body.dark-theme .carousel-images a {
+    color: #e0e0e0;
+}
+
+body.dark-theme .carousel-images a p {
+    color: #e0e0e0;
+}
+
+body.dark-theme #over {
+    color: #e0e0e0;
+}
+
+body.dark-theme #over a {
+    color: #e0e0e0;
+}
+
+body.dark-theme #over a:hover {
+    color: #ffa500;
+}
+
+
+body.dark-theme footer {
+    background-color: #1c1c1c;
+    color: #e0e0e0;
+}
+
+body.dark-theme .footer-link {
+    color: #e0e0e0;
+}
+
+body.dark-theme .footer-link:hover {
+    color: #ffa500;
+}
+
+body.dark-theme footer p.copyright {
+    color: #888;
+}
+
+body.dark-theme .settings-sidebar {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+body.dark-theme .settings-sidebar h3,
+body.dark-theme .setting label {
+    color: #e0e0e0;
+}
+
+body.dark-theme .setting input,
+body.dark-theme .setting select {
+    background-color: #2b2b2b;
+    color: #e0e0e0;
+    border-color: #444;
+}
+
+body.dark-theme .setting button {
+    background-color: #ffa500;
+    color: white;
+}
+
+body.dark-theme .close-sidebar-button {
+    background-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-theme .close-sidebar-button:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    cursor: grab; /* mostra que pode ser arrastado */
+}
+
+.carousel-images:active {
+    cursor: grabbing;
+}
+
+.carousel-container {
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari e Opera */
+}
+
+#chatbot-close:hover {
+    color: red;
+}
+
+/* ... outras regras CSS ... */
+
+/* Estilos para o container do ícone de perfil no cabeçalho */
+/* Ícone de perfil no header */
+.profile-icon#header-profile-icon {
+    display: none;
+    align-items: center;
+}
+
+.profile-icon#header-profile-icon a {
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-icon#header-profile-icon svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+}
+
+/* Ícone de perfil no sidebar */
+.profile-icon#sidebar-profile-icon {
+    display: none;
+    justify-content: center;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.profile-icon#sidebar-profile-icon a {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.profile-icon#sidebar-profile-icon svg {
+    width: 40px;
+    height: 40px;
+    fill: white;
+}
+
+/* Tema escuro */
+body.dark-theme .profile-icon#header-profile-icon svg,
+body.dark-theme .profile-icon#sidebar-profile-icon svg {
+    fill: #e0e0e0;
+}
+
+/* Ocultar o container de botões quando logado */
+.buttons#header-auth-buttons {
+    display: flex;
+}
+
+.settings-sidebar #sidebar-auth-buttons {
+    display: block;
+}
