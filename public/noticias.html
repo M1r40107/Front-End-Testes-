@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notícias de Tecnologia - Byte Bros</title>
+  <link rel="stylesheet" href="css/style10.css">
+  <link rel="stylesheet" href="css/style2.css">
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .dark-theme {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+    }
+
+    .theme-toggle-button {
+      font-size: 1.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Notícias no Mundo da Tecnologia</h1>
+    <nav>
+      <a href="index.html">Página Inicial</a>
+      <a href="#">Outra Seção</a>
+    </nav>
+    <button id="theme-toggle-button" class="theme-toggle-button">🌙</button>
+  </header>
+
+  <main>
+    <section class="news-section">
+      <h2>Últimas Notícias</h2>
+      <div id="news-container">
+        <p class="loading">Carregando notícias...</p>
+      </div>
+      <button id="load-more-btn">Carregar Mais</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Byte Bros. Todos os direitos reservados.</p>
+    <p id="system-version" style="text-align: center; margin-bottom: 5px; font-size: 0.8em; color: #fdfbfb;"></p>
+  </footer>
+  <script src="js/version.js"></script>
+
+  <script>
+    // Função para aplicar o tema global
+    function applyTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        themeToggleButton.textContent = '☀️';
+      } else {
+        document.body.classList.remove('dark-theme');
+        themeToggleButton.textContent = '🌙';
+      }
+    }
+
+    // Função para alternar entre tema claro e escuro
+    function toggleTheme() {
+      const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+      if (currentTheme === 'dark') {
+        localStorage.setItem('theme', 'light');
+        applyTheme();
+      } else {
+        localStorage.setItem('theme', 'dark');
+        applyTheme();
+      }
+    }
+
+    const themeToggleButton = document.getElementById('theme-toggle-button');
+    themeToggleButton.addEventListener('click', toggleTheme);
+
+    // Aplica o tema salvo ao carregar a página
+    applyTheme();
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const newsContainer = document.getElementById('news-container');
+      const loadMoreBtn = document.getElementById('load-more-btn');
+      let currentPage = 1;
+      const newsPerPage = 10;
+      let allNews = [];
+
+      // Função para buscar as notícias
+      async function fetchNews(page) {
+        newsContainer.innerHTML = '<div class="loading">Carregando notícias...</div>';
+        try {
+          const apiUrl = `https://api.example.com/tecnologia?page=${page}&limit=${newsPerPage}`;
+          const response = await fetch(apiUrl);
+          const data = await response.json();
+
+          if (data.articles && data.articles.length > 0) {
+            allNews = allNews.concat(data.articles);
+            displayNews(allNews.slice(0, page * newsPerPage));
+            if (data.totalResults <= allNews.length) {
+              loadMoreBtn.style.display = 'none';
+            } else {
+              loadMoreBtn.style.display = 'block';
+            }
+          } else if (page === 1) {
+            newsContainer.innerHTML = '<p>Nenhuma notícia encontrada.</p>';
+            loadMoreBtn.style.display = 'none';
+          } else {
+            loadMoreBtn.style.display = 'none';
+          }
+        } catch (error) {
+          console.error('Erro ao buscar notícias:', error);
+          newsContainer.innerHTML = '<p>Erro ao carregar as notícias.</p>';
+          loadMoreBtn.style.display = 'none';
+        }
+      }
+
+      // Função para exibir as notícias
+      function displayNews(news) {
+        newsContainer.innerHTML = '';
+        news.forEach(item => {
+          const newsItem = document.createElement('div');
+          newsItem.classList.add('news-item');
+          newsItem.innerHTML = `
+            <h3>${item.title || 'Título não disponível'}</h3>
+            <p>${item.description || 'Descrição não disponível'}</p>
+            ${item.url ? `<p><a href="${item.url}" target="_blank">Leia mais</a></p>` : ''}
+          `;
+          newsContainer.appendChild(newsItem);
+        });
+      }
+
+      loadMoreBtn.addEventListener('click', () => {
+        currentPage++;
+        fetchNews(currentPage);
+      });
+
+      fetchNews(currentPage);
+    });
+  </script>
+  <script src="noticias.js"></script>
+</body>
+</html>

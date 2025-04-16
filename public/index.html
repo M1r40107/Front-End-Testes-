@@ -34,9 +34,15 @@
             <div class="setting" id="change-password-setting-sidebar" style="display: none;">
                 <button id="change-password-button-sidebar">Alterar Senha</button>
             </div>
+            <div class="setting" id="change-phone-setting-sidebar" style="display: none;">
+                <button id="change-phone-button-sidebar">Alterar Telefone</button>
+            </div>
             <div class="setting" id="logout-setting" style="display: none;">
                 <button id="logout-button">Logout</button>
             </div>
+
+            <a href="noticias.html" class="news-button-sidebar">Ver Novas Notícias</a>
+
             <button class="close-sidebar-button" aria-label="Fechar Configurações">&times;</button>
         </div>
 
@@ -144,6 +150,8 @@
             const changePasswordSettingSidebar = document.getElementById('change-password-setting-sidebar');
             const changeEmailButtonSidebar = document.getElementById('change-email-button-sidebar');
             const changePasswordButtonSidebar = document.getElementById('change-password-button-sidebar');
+            const changePhoneSettingSidebar = document.getElementById('change-phone-setting-sidebar'); // Novo elemento
+            const changePhoneButtonSidebar = document.getElementById('change-phone-button-sidebar'); // Novo elemento
             const chatbotContainer = document.getElementById('chatbot-container');
             const chatbotToggle = document.getElementById('chatbot-toggle');
             const chatbotCloseButton = document.getElementById('chatbot-close');
@@ -207,6 +215,12 @@
                 });
             }
 
+            if (changePhoneButtonSidebar) {
+                changePhoneButtonSidebar.addEventListener('click', () => {
+                    window.location.href = 'trocar-telefone.html'; // Crie esta página
+                });
+            }
+
             chatbotToggle.addEventListener('click', () => {
                 chatbotContainer.classList.toggle('closed');
                 chatbotToggle.style.display = chatbotContainer.classList.contains('closed') ? 'flex' : 'none';
@@ -250,6 +264,9 @@
                 }
                 if (changePasswordSettingSidebar) {
                     changePasswordSettingSidebar.style.display = isLoggedIn ? 'block' : 'none';
+                }
+                if (changePhoneSettingSidebar) {
+                    changePhoneSettingSidebar.style.display = isLoggedIn ? 'block' : 'none';
                 }
 
                 if (isLoggedIn && userName) {

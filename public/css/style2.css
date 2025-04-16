@@ -856,3 +856,36 @@ body.dark-theme .profile-icon#sidebar-profile-icon svg {
 .settings-sidebar #sidebar-auth-buttons {
     display: block;
 }
+
+/* Estilos para o botão de notícias na sidebar */
+.settings-sidebar .news-button-sidebar {
+    display: block;
+    width: calc(100% - 40px); /* Ajustar a largura para considerar o padding da sidebar */
+    padding: 10px;
+    margin: 10px 20px; /* Adicionar margem horizontal para alinhar com os outros botões */
+    background-color: #ffa500; /* Usar a cor dos outros botões */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px; /* Usar o tamanho de fonte dos outros botões */
+    font-weight: bold; /* Usar a mesma fonte dos outros botões */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box; /* Garantir que padding e border não aumentem a largura */
+}
+
+.settings-sidebar .news-button-sidebar:hover {
+    background-color: #45a049; /* Usar a cor de hover dos outros botões */
+}
+
+/* Estilos para tema escuro */
+body.dark-theme .settings-sidebar .news-button-sidebar {
+    background-color: #ffa500; /* Manter a cor para consistência */
+    color: white;
+}
+
+body.dark-theme .settings-sidebar .news-button-sidebar:hover {
+    background-color: #45a049; /* Manter a cor de hover */
+}

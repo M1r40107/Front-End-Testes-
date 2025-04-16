@@ -141,6 +141,22 @@ button:hover {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
+input[type="tel"] {
+    width: calc(100% - 16px); /* Considera o padding */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Garante que o padding não aumenta a largura total */
+    font-size: 16px;
+}
+
+input[type="tel"]:focus {
+    border-color: #007bff; /* Cor de foco */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sutil sombra ao focar */
+}
+
 .copyright {
     margin-top: 20px;
     font-size: 0.9em;
