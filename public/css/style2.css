@@ -140,9 +140,19 @@ nav a:hover {
 /* Cabeçalho -> fundo */
 .banner {
     position: relative;
+    width: 100%;
+    max-width: 100%;
     text-align: center;
-    margin: 50px 0;
+    margin-top: 20px;
 }
+
+.banner img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
 
 /* textos overlay2 e h3 */
 .banner .overlay2 {
@@ -161,15 +171,23 @@ nav a:hover {
     transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave para o tema */
 }
 
+.overlay2 {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
 .banner h3 {
-    position: relative;
-    top: 330px;
-    left: 0px;
-    height: auto;
+    margin-top: 20px;
+    font-size: 28px;
     font-weight: bold;
-    margin-bottom: 15px;
-    font-size: 50px;
-    transition: color 0.3s ease; /* Transição suave para o tema */
 }
 
 /* Carrossel */
@@ -227,6 +245,7 @@ nav a:hover {
     font-weight: bold;
     color: rgba(0, 0, 0, 0.808);
 }
+
 
 #over {
     position: relative;
@@ -350,6 +369,16 @@ footer p.copyright {
         width: 100%;
     }
 
+    .banner h3 {
+        font-size: 22px;
+    }
+
+    .overlay2 {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+
+
     .carousel-container {
         top: 350px;
     }
@@ -376,6 +405,17 @@ footer p.copyright {
 
     .buttons {
         justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner h3 {
+        font-size: 20px;
+    }
+
+    .overlay2 {
+        font-size: 13px;
+        padding: 5px 8px;
     }
 }
 
