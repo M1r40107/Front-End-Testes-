@@ -26,7 +26,7 @@ header {
 .logo {
     position: relative;
     text-align: left;
-    right: 13%;
+    right: 15%;
     padding-right: 20%;
 }
 
@@ -118,21 +118,19 @@ nav a:hover {
 /* Centralização de tudo não mexer */
 .banner:first-of-type {
     position: relative;
-    width: 2000px;
-    top: 0px;
-    left: 0px;
-    width: 200px;
+    width: 13%;;
     height: auto;
     z-index: 10;
+    right: 3%;
 }
 
 /* imagem assitencia tecnica*/
 .banner:first-of-type img {
     position: relative;
-    left: 550px;
+    left: 240%;
     width: 400%;
     height: auto;
-    border-radius: 10px;
+    border-radius: 1%;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -157,36 +155,25 @@ nav a:hover {
 }
 
 
-/* textos overlay2 e h3 */
-.banner .overlay2 {
-    position: relative;
-    display: inline;
-    font-weight: bold;
-    white-space: nowrap;
-    top: 520px;
-    left: 390px;
-    font-size: 24px;
-    color: rgb(253, 249, 249);
-    border-radius: 100px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
-    background: rgba(0, 0, 0, 0.6);
-    padding: 8px 10px 10px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave para o tema */
-}
-
 .overlay2 {
     position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 110%;              /* Se quer abaixo do elemento pai */
+    left: 415%;              /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Centraliza usando o centro do próprio elemento */
+    
     font-size: clamp(12px, 2.5vw, 16px); /* responsivo */
     background: rgba(0, 0, 0, 0.6);
+    
+    /* Background-position só funciona se tiver background-image */
+    background-position: 10% 50%; 
+    
     color: white;
     padding: 8px 12px;
     border-radius: 8px;
     white-space: nowrap;
     box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
 }
+
 
 .banner h3 {
     margin-top: 15px;
