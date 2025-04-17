@@ -26,8 +26,8 @@ header {
 .logo {
     position: relative;
     text-align: left;
-    right: 400px;
-    padding-right: 20px;
+    right: 15%;
+    padding-right: 20%;
 }
 
 header .logo a {
