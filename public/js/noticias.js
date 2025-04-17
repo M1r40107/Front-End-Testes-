@@ -39,33 +39,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // 🔹 Função para carregar notícias salvas localmente pelo ADM (tanto 'newsData' quanto 'news')
+    function carregarNoticiasLocais() {
+        const noticiasLocaisAdmin = JSON.parse(localStorage.getItem('news')) || [];
+        const noticiasLocaisLegacy = JSON.parse(localStorage.getItem('newsData')) || [];
+        return [...noticiasLocaisAdmin, ...noticiasLocaisLegacy];
+    }
+
     // Função para buscar notícias
     async function fetchNews(page) {
         if (page === 1) {
             newsContainer.innerHTML = '<div class="loading">Carregando notícias...</div>';
         }
+
         try {
             const apiUrl = `https://api.example.com/tecnologia?page=${page}&limit=${newsPerPage}`;
             const response = await fetch(apiUrl);
             const data = await response.json();
 
+            // 🔹 Combina notícias da API com as locais adicionadas via ADM
+            const locais = carregarNoticiasLocais();
+
+            let todasNoticias = [];
             if (data.articles && data.articles.length > 0) {
-                allNews = allNews.concat(data.articles);
+                todasNoticias = locais.concat(data.articles);
+                allNews = todasNoticias;
                 displayNews(allNews.slice(0, page * newsPerPage));
-                if (data.totalResults <= allNews.length) {
+                if (data.totalResults <= allNews.length - locais.length) {
                     loadMoreBtn.style.display = 'none';
                 } else {
                     loadMoreBtn.style.display = 'block';
                 }
-            } else if (page === 1) {
-                newsContainer.innerHTML = '<p>Nenhuma notícia encontrada.</p>';
+            } else if (locais.length > 0) {
+                allNews = locais;
+                displayNews(allNews);
                 loadMoreBtn.style.display = 'none';
             } else {
+                newsContainer.innerHTML = '<p>Nenhuma notícia encontrada.</p>';
                 loadMoreBtn.style.display = 'none';
             }
         } catch (error) {
             console.error('Erro ao buscar notícias:', error);
-            newsContainer.innerHTML = '<p>Erro ao carregar as notícias.</p>';
+
+            // 🔹 Se API falhar, mostra só as locais
+            const locais = carregarNoticiasLocais();
+            if (locais.length > 0) {
+                allNews = locais;
+                displayNews(allNews);
+            } else {
+                newsContainer.innerHTML = '<p>Erro ao carregar as notícias.</p>';
+            }
+
             loadMoreBtn.style.display = 'none';
         }
     }
@@ -80,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3>${item.title || 'Título não disponível'}</h3>
                 <p>${item.description || 'Descrição não disponível'}</p>
                 ${item.url ? `<p><a href="${item.url}" target="_blank">Leia mais</a></p>` : ''}
+                ${item.publishedAt ? `<p><em>${item.publishedAt}</em></p>` : ''}
             `;
             newsContainer.appendChild(newsItem);
         });
@@ -97,6 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Carrega o tema no carregamento da página
     loadTheme();
 
-    // Carrega as notícias da primeira página
+    // Carrega as notícias da primeira página (API + locais)
     fetchNews(currentPage);
 });

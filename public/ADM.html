@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,87 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administração - Byte Bros</title>
     <link rel="stylesheet" href="css/style8.css">
-    <style>
-        .login-container {
-            display: flex;
-            flex-direction: column;
-            width: 300px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            gap: 10px;
-            background-color: white;
-        }
-
-        .login-container h2 {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .login-container label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .login-container input[type="email"],
-        .login-container input[type="password"],
-        .login-container button {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 3px;
-            font-size: 1em;
-            margin-bottom: 10px;
-        }
-
-        .login-container button {
-            background-color: #4caf50;
-            color: white;
-            cursor: pointer;
-            border: none;
-        }
-
-        .login-container button:hover {
-            background-color: #45a049;
-        }
-
-        .admin-content {
-            display: none; /* Inicialmente escondido */
-        }
-        
-        .admin-badge {
-            display: inline-flex;
-            align-items: center;
-            background-color: #FFD700;
-            color: #333;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-size: 0.8em;
-            margin-left: 8px;
-        }
-        
-        .admin-badge svg {
-            width: 14px;
-            height: 14px;
-            margin-right: 4px;
-        }
-        
-        .admin-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        
-        .admin-item {
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 10px;
-            margin-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    </style>
 </head>
 <body>
     <div class="login-logo">
@@ -112,16 +32,18 @@
                 <button onclick="logoutAdmin()" class="button">Sair</button>
             </div>
         </div>
-        
-        <!-- Abas de navegação -->
-        <div class="tabs">
-            <button id="tab-products" class="tab-button active">Produtos</button>
+
+        <div class="tab-buttons">
+            <button id="tab-products" class="tab-button">Produtos</button>
             <button id="tab-add-product" class="tab-button">Adicionar Produto</button>
+            <button id="tab-add-news" class="tab-button active">Notícias</button>
             <button id="tab-admins" class="tab-button" style="display: none;">Gerenciar Admins</button>
+            <button id="tab-budgets" class="tab-button">Orçamentos</button>
+            <button id="tab-support-requests" class="tab-button">Pedidos de Suporte</button>
+            <button id="tab-contact-us" class="tab-button">Fale Conosco</button>
         </div>
 
-        <!-- Conteúdo da aba Produtos -->
-        <div id="products-content" class="tab-content active">
+        <div id="products-content" class="tab-content">
             <h2>Peças Disponíveis</h2>
             <div class="product-search">
                 <input type="text" id="product-search" placeholder="Buscar produtos...">
@@ -129,7 +51,6 @@
             <ul class="product-list"></ul>
         </div>
 
-        <!-- Conteúdo da aba Adicionar Produto -->
         <div id="add-product-content" class="tab-content">
             <h2>Adicionar Novo Produto</h2>
             <form id="add-product-form" class="product-form">
@@ -157,7 +78,25 @@
             </form>
         </div>
 
-        <!-- Conteúdo da aba Gerenciar Admins (apenas para admin superior) -->
+        <div id="add-news-content" class="tab-content active">
+            <h2>Gerenciar Notícias</h2>
+            <form id="add-news-form">
+                <div class="form-group">
+                    <label for="news-title">Título:</label>
+                    <input type="text" id="news-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="news-description">Descrição:</label>
+                    <textarea id="news-description" required></textarea>
+                </div>
+                <button type="submit" class="button submit-button">Adicionar Notícia</button>
+            </form>
+
+            <h3>Notícias Cadastradas</h3>
+            <ul id="news-list" class="news-list">
+                </ul>
+        </div>
+
         <div id="admins-content" class="tab-content">
             <h2>Gerenciar Administradores</h2>
             <div class="admin-form">
@@ -174,228 +113,375 @@
                 <p id="add-admin-message" style="color: green; display: none;">Administrador adicionado com sucesso!</p>
                 <p id="add-admin-error" style="color: red; display: none;">Erro ao adicionar administrador.</p>
             </div>
-            
+
             <div class="admin-list-container">
                 <h3>Administradores Atuais</h3>
                 <ul id="admin-list" class="admin-list">
-                    <!-- Lista de administradores será inserida aqui via JavaScript -->
-                </ul>
+                    </ul>
             </div>
         </div>
+        <div id="budgets-content" class="tab-content">
+            <h2>Orçamentos</h2>
+            </div>
+        
+        <div id="support-requests-content" class="tab-content">
+            <h2>Pedidos de Suporte</h2>
+            </div>
+        
+        <div id="contact-us-content" class="tab-content">
+            <h2>Mensagens Fale Conosco</h2>
+            </div>
 
         <div class="footer">
             <a href="lojapecascliente.html" class="button">Acessar Loja</a>
         </div>
-    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Elementos da página
-            const loginSection = document.getElementById('loginSection');
-            const loginFormDiv = document.getElementById('loginForm');
-            const adminContent = document.getElementById('adminContent');
-            const addProductForm = document.getElementById('add-product-form');
-            const productList = document.querySelector('.product-list');
-            const themeToggleButton = document.getElementById('theme-toggle');
-            const adminEmailDisplay = document.getElementById('admin-email-display');
-            const tabProducts = document.getElementById('tab-products');
-            const tabAddProduct = document.getElementById('tab-add-product');
-            const tabAdmins = document.getElementById('tab-admins');
-            const productsContent = document.getElementById('products-content');
-            const addProductContent = document.getElementById('add-product-content');
-            const adminsContent = document.getElementById('admins-content');
-            const addAdminBtn = document.getElementById('add-admin-btn');
-            const adminList = document.getElementById('admin-list');
+    // Elementos da página
+        const loginSection = document.getElementById('loginSection');
+        const loginFormDiv = document.getElementById('loginForm');
+        const adminContent = document.getElementById('adminContent');
+        const addProductForm = document.getElementById('add-product-form');
+        const productList = document.querySelector('.product-list');
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const adminEmailDisplay = document.getElementById('admin-email-display');
+        const tabProducts = document.getElementById('tab-products');
+        const tabAddProduct = document.getElementById('tab-add-product');
+        const tabAddNews = document.getElementById('tab-add-news');
+        const tabAdmins = document.getElementById('tab-admins');
+        const tabBudgets = document.getElementById('tab-budgets'); // Nova aba
+        const tabSupportRequests = document.getElementById('tab-support-requests'); // Nova aba
+        const tabContactUs = document.getElementById('tab-contact-us'); // Nova aba
+        const productsContent = document.getElementById('products-content');
+        const addProductContent = document.getElementById('add-product-content');
+        const addNewsContent = document.getElementById('add-news-content');
+        const adminsContent = document.getElementById('admins-content');
+        const budgetsContent = document.getElementById('budgets-content'); // Novo conteúdo
+        const supportRequestsContent = document.getElementById('support-requests-content'); // Novo conteúdo
+        const contactUsContent = document.getElementById('contact-us-content'); // Novo conteúdo
+        const addAdminBtn = document.getElementById('add-admin-btn');
+        const adminList = document.getElementById('admin-list');
+        const addNewsForm = document.getElementById('add-news-form');
+        const newsList = document.getElementById('news-list');
+
 
             // Variáveis de estado
             let products = loadProductsFromLocalStorage();
             let adminAccounts = loadAdminAccounts();
             let isAdminLoggedIn = localStorage.getItem('isAdminLoggedIn') === 'true';
             let isSuperAdmin = localStorage.getItem('isAdminSuper') === 'true';
+            let news = loadNewsFromLocalStorage();
 
-            // Funções para manipulação de contas de administrador
-            function loadAdminAccounts() {
-                const storedAdmins = localStorage.getItem('adminAccounts');
-                return storedAdmins ? JSON.parse(storedAdmins) : [];
-            }
+             // Funções para manipulação de contas de administrador
+    function loadAdminAccounts() {
+        const storedAdmins = localStorage.getItem('adminAccounts');
+        return storedAdmins ? JSON.parse(storedAdmins) : [];
+    }
 
-            function saveAdminAccounts(accounts) {
-                localStorage.setItem('adminAccounts', JSON.stringify(accounts));
-            }
+    function saveAdminAccounts(accounts) {
+        localStorage.setItem('adminAccounts', JSON.stringify(accounts));
+    }
 
-            // Login de administrador
-            function loginAdmin() {
-                const emailInput = document.getElementById('admin-email').value;
-                const passwordInput = document.getElementById('admin-password').value;
-                const loginError = document.getElementById('login-error');
-                
-                // Verifique se o email e a senha correspondem ao seu login
-                if (emailInput === 'bytebrosti@gmail.com' && passwordInput === 'lipe1310@') {
-                    isAdminLoggedIn = true;
-                    isSuperAdmin = true; // Você é o admin superior
-                    
-                    // Salva estado na sessão
-                    localStorage.setItem('isAdminLoggedIn', 'true');
-                    localStorage.setItem('loggedInAdminEmail', emailInput);
-                    localStorage.setItem('isAdminSuper', 'true');
-                    
-                    loginError.style.display = 'none';
-                    showAdminPanel();
-                } else {
-                    // Verifica se é um admin normal
-                    const admin = adminAccounts.find(acc => acc.email === emailInput && acc.password === passwordInput);
-                    if (admin) {
-                        isAdminLoggedIn = true;
-                        isSuperAdmin = false; // Não é admin superior
-                        
-                        // Salva estado na sessão
-                        localStorage.setItem('isAdminLoggedIn', 'true');
-                        localStorage.setItem('loggedInAdminEmail', emailInput);
-                        localStorage.setItem('isAdminSuper', 'false');
-                        
-                        loginError.style.display = 'none';
-                        showAdminPanel();
-                    } else {
-                        loginError.style.display = 'block';
-                    }
-                }
-            }
+    // Funções para manipulação de notícias
+    function loadNewsFromLocalStorage() {
+        const storedNews = localStorage.getItem('news');
+        return storedNews ? JSON.parse(storedNews) : [];
+    }
 
-            // Logout
-            function logoutAdmin() {
-                isAdminLoggedIn = false;
-                isSuperAdmin = false;
-                
-                // Limpa estado da sessão
-                localStorage.removeItem('isAdminLoggedIn');
-                localStorage.removeItem('loggedInAdminEmail');
-                localStorage.removeItem('isAdminSuper');
-                
-                // Volta para a tela de login
-                loginSection.style.display = 'flex';
-                adminContent.style.display = 'none';
-            }
+    function saveNewsToLocalStorage(newsToSave) {
+        localStorage.setItem('news', JSON.stringify(newsToSave));
+    }
 
-            // Mostrar painel admin
-            function showAdminPanel() {
-                const loggedInAdminEmail = localStorage.getItem('loggedInAdminEmail') || '';
-                
-                loginSection.style.display = 'none';
-                adminContent.style.display = 'block';
-                adminEmailDisplay.textContent = loggedInAdminEmail;
-                
-                // Controle de acesso baseado no tipo de admin
-                if (isSuperAdmin) {
-                    tabAdmins.style.display = 'block';
-                } else {
-                    tabAdmins.style.display = 'none';
-                }
-                
-                // Carrega as listas
-                renderAdminProducts(products);
-                renderAdminList();
-            }
+    function renderNewsList() {
+        newsList.innerHTML = '';
+        if (news.length === 0) {
+            newsList.innerHTML = '<li>Nenhuma notícia cadastrada.</li>';
+            return;
+    }
+    news.forEach((item, index) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'news-item';
+        listItem.innerHTML = `
+            <div>
+                <strong>${item.title}</strong><br>
+                <span>${item.description}</span>
+            </div>
+            <div class="news-actions">
+                <button class="button edit-news-btn" data-index="${index}">Editar</button>
+                <button class="button delete-news-btn danger" data-index="${index}">Excluir</button>
+            </div>
+            <form id="edit-news-form-${index}" class="edit-news-form">
+                <label for="edit-news-title-${index}">Título:</label>
+                <input type="text" id="edit-news-title-${index}" value="${item.title}" required>
+                <label for="edit-news-description-${index}">Descrição:</label>
+                <textarea id="edit-news-description-${index}" required>${item.description}</textarea>
+                <button type="button" class="button save-edit-news-btn" data-index="${index}">Salvar</button>
+                <button type="button" class="button cancel-edit-news-btn" data-index="${index}">Cancelar</button>
+            </form>
+        `;
+        newsList.appendChild(listItem);
 
-            // Sistema de abas
-            function setupTabs() {
-                // Inicializar sistema de abas
-                tabProducts.addEventListener('click', () => switchTab('products'));
-                tabAddProduct.addEventListener('click', () => switchTab('add-product'));
-                tabAdmins.addEventListener('click', () => switchTab('admins'));
-                
-                // Ativa a primeira aba por padrão
-                switchTab('products');
-            }
-            
-            function switchTab(tabName) {
-                // Remove classe "active" de todas as abas e conteúdos
-                [tabProducts, tabAddProduct, tabAdmins].forEach(tab => tab.classList.remove('active'));
-                [productsContent, addProductContent, adminsContent].forEach(content => content.classList.remove('active'));
-                
-                // Ativa a aba selecionada
-                if (tabName === 'products') {
-                    tabProducts.classList.add('active');
-                    productsContent.classList.add('active');
-                } else if (tabName === 'add-product') {
-                    tabAddProduct.classList.add('active');
-                    addProductContent.classList.add('active');
-                } else if (tabName === 'admins') {
-                    tabAdmins.classList.add('active');
-                    adminsContent.classList.add('active');
-                }
-            }
+const editForm = listItem.querySelector(`#edit-news-form-${index}`);
+const editBtn = listItem.querySelector('.edit-news-btn');
+const deleteBtn = listItem.querySelector('.delete-news-btn');
+const saveEditBtn = listItem.querySelector('.save-edit-news-btn');
+const cancelEditBtn = listItem.querySelector('.cancel-edit-news-btn');
 
-            // Adicionar novo admin (por um admin superior)
-            if (addAdminBtn) {
-                addAdminBtn.addEventListener('click', () => {
-                    if (!isSuperAdmin) {
-                        alert('Você não tem permissão para adicionar novos administradores.');
-                        return;
-                    }
-                    
-                    const addAdminMessage = document.getElementById('add-admin-message');
-                    const addAdminError = document.getElementById('add-admin-error');
-                    const emailInput = document.getElementById('add-admin-email');
-                    const passwordInput = document.getElementById('add-admin-password');
-                    
-                    const newEmail = emailInput.value;
-                    const newPassword = passwordInput.value;
-                    
-                    if (!newEmail || !newPassword) {
-                        addAdminError.textContent = 'Por favor, preencha todos os campos.';
-                        addAdminError.style.display = 'block';
-                        addAdminMessage.style.display = 'none';
-                        return;
-                    }
-                    
-                    // Verifica se o email já está cadastrado
-                    if (adminAccounts.some(admin => admin.email === newEmail)) {
-                        addAdminError.textContent = 'Este email já está cadastrado.';
-                        addAdminError.style.display = 'block';
-                        addAdminMessage.style.display = 'none';
-                        return;
-                    }
-                    
-                    // Adiciona o novo admin (não superior)
-                    adminAccounts.push({
-                        email: newEmail,
-                        password: newPassword,
-                        isSuper: false
-                    });
-                    
-                    saveAdminAccounts(adminAccounts);
-                    renderAdminList();
-                    
-                    // Limpa o formulário e exibe mensagem de sucesso
-                    emailInput.value = '';
-                    passwordInput.value = '';
-                    addAdminMessage.style.display = 'block';
-                    addAdminError.style.display = 'none';
-                    
-                    setTimeout(() => {
-                        addAdminMessage.style.display = 'none';
-                    }, 3000);
-                });
-            }
+editBtn.addEventListener('click', () => {
+    editForm.style.display = 'block';
+    listItem.querySelector('div').style.display = 'none';
+    listItem.querySelector('.news-actions').style.display = 'none';
+});
 
-            // Funções para gerenciar produtos
-            function loadProductsFromLocalStorage() {
-                const storedProducts = localStorage.getItem('products');
-                return storedProducts ? JSON.parse(storedProducts) : [];
-            }
+cancelEditBtn.addEventListener('click', () => {
+    editForm.style.display = 'none';
+    listItem.querySelector('div').style.display = 'block';
+    listItem.querySelector('.news-actions').style.display = 'flex';
+});
 
-            function saveProductsToLocalStorage(productsToSave) {
-                localStorage.setItem('products', JSON.stringify(productsToSave));
-            }
+saveEditBtn.addEventListener('click', () => {
+    const newTitle = document.getElementById(`edit-news-title-${index}`).value;
+    const newDescription = document.getElementById(`edit-news-description-${index}`).value;
+    news[index].title = newTitle;
+    news[index].description = newDescription;
+    saveNewsToLocalStorage(news);
+    renderNewsList();
+});
 
-            function renderAdminProducts(productsToRender) {
-                if (!productList) return;
-                
-                productList.innerHTML = '';
-                if (!productsToRender || productsToRender.length === 0) {
-                    productList.innerHTML = '<li class="no-products-message">Nenhuma peça cadastrada ainda.</li>';
-                    return;
-                }
+deleteBtn.addEventListener('click', () => {
+    if (confirm(`Tem certeza que deseja excluir a notícia "${item.title}"?`)) {
+        news.splice(index, 1);
+        saveNewsToLocalStorage(news);
+        renderNewsList();
+    }
+});
+});
+}
+
+// Login de administrador
+function loginAdmin() {
+const emailInput = document.getElementById('admin-email').value;
+const passwordInput = document.getElementById('admin-password').value;
+const loginError = document.getElementById('login-error');
+
+// Verifique se o email e a senha correspondem ao seu login
+if (emailInput === 'bytebrosti@gmail.com' && passwordInput === 'lipe1310@') {
+isAdminLoggedIn = true;
+isSuperAdmin = true; // Você é o admin superior
+
+// Salva estado na sessão
+localStorage.setItem('isAdminLoggedIn', 'true');
+localStorage.setItem('loggedInAdminEmail', emailInput);
+localStorage.setItem('isAdminSuper', 'true');
+
+loginError.style.display = 'none';
+showAdminPanel();
+} else {
+// Verifica se é um admin normal
+const admin = adminAccounts.find(acc => acc.email === emailInput && acc.password === passwordInput);
+if (admin) {
+    isAdminLoggedIn = true;
+    isSuperAdmin = false; // Não é admin superior
+
+    // Salva estado na sessão
+    localStorage.setItem('isAdminLoggedIn', 'true');
+    localStorage.setItem('loggedInAdminEmail', emailInput);
+    localStorage.setItem('isAdminSuper', 'false');
+
+    loginError.style.display = 'none';
+    showAdminPanel();
+} else {
+    loginError.style.display = 'block';
+}
+}
+}
+
+// Logout
+function logoutAdmin() {
+isAdminLoggedIn = false;
+isSuperAdmin = false;
+
+// Limpa estado da sessão
+localStorage.removeItem('isAdminLoggedIn');
+localStorage.removeItem('loggedInAdminEmail');
+localStorage.removeItem('isAdminSuper');
+
+// Volta para a tela de login
+loginSection.style.display = 'flex';
+adminContent.style.display = 'none';
+}
+
+// Mostrar painel admin
+function showAdminPanel() {
+const loggedInAdminEmail = localStorage.getItem('loggedInAdminEmail') || '';
+
+loginSection.style.display = 'none';
+adminContent.style.display = 'block';
+adminEmailDisplay.textContent = loggedInAdminEmail;
+
+// Controle de acesso baseado no tipo de admin
+if (isSuperAdmin) {
+tabAdmins.style.display = 'block';
+} else {
+tabAdmins.style.display = 'none';
+}
+
+// Carrega as listas
+renderAdminProducts(products);
+renderAdminList();
+renderNewsList(); // Carrega a lista de notícias
+setupTabs(); // Inicializa as abas após o login
+}
+
+// Sistema de abas
+function setupTabs() {
+// Inicializar sistema de abas
+if (tabProducts) tabProducts.addEventListener('click', () => switchTab('products'));
+if (tabAddProduct) tabAddProduct.addEventListener('click', () => switchTab('add-product'));
+if (tabAddNews) tabAddNews.addEventListener('click', () => switchTab('add-news'));
+if (tabAdmins) tabAdmins.addEventListener('click', () => switchTab('admins'));
+if (tabBudgets) tabBudgets.addEventListener('click', () => switchTab('budgets'));
+if (tabSupportRequests) tabSupportRequests.addEventListener('click', () => switchTab('support-requests'));
+if (tabContactUs) tabContactUs.addEventListener('click', () => switchTab('contact-us'));
+
+// Ativa a primeira aba por padrão
+switchTab('add-news');
+}
+
+function switchTab(tabName) {
+// Remove classe "active" de todas as abas e conteúdos
+[tabProducts, tabAddProduct, tabAddNews, tabAdmins, tabBudgets, tabSupportRequests, tabContactUs].forEach(tab => {
+if (tab) tab.classList.remove('active');
+});
+[productsContent, addProductContent, addNewsContent, adminsContent, budgetsContent, supportRequestsContent, contactUsContent].forEach(content => {
+if (content) content.classList.remove('active');
+});
+
+// Ativa a aba selecionada
+if (tabName === 'products' && tabProducts && productsContent) {
+tabProducts.classList.add('active');
+productsContent.classList.add('active');
+} else if (tabName === 'add-product' && tabAddProduct && addProductContent) {
+tabAddProduct.classList.add('active');
+addProductContent.classList.add('active');
+} else if (tabName === 'add-news' && tabAddNews && addNewsContent) {
+tabAddNews.classList.add('active');
+addNewsContent.classList.add('active');
+} else if (tabName === 'admins' && tabAdmins && adminsContent) {
+tabAdmins.classList.add('active');
+adminsContent.classList.add('active');
+} else if (tabName === 'budgets' && tabBudgets && budgetsContent) {
+tabBudgets.classList.add('active');
+budgetsContent.classList.add('active');
+renderOrcamentos(); // Carrega e exibe os orçamentos ao ativar a aba
+} else if (tabName === 'support-requests' && tabSupportRequests && supportRequestsContent) {
+tabSupportRequests.classList.add('active');
+supportRequestsContent.classList.add('active');
+renderPedidosSuporte(); // Carrega e exibe os pedidos de suporte
+} else if (tabName === 'contact-us' && tabContactUs && contactUsContent) {
+tabContactUs.classList.add('active');
+contactUsContent.classList.add('active');
+renderMensagensFaleConosco(); // Carrega e exibe as mensagens fale conosco
+}
+}
+function enviarPedidoSuporte() {
+// ... sua lógica para coletar os dados do pedido de suporte ...
+const nome = document.getElementById('nome').value;
+const email = document.getElementById('email').value;
+const problema = document.getElementById('problema').value;
+const detalhes = document.getElementById('detalhes').value;
+
+const novoPedidoSuporte = {
+id: Date.now().toString(),
+nome,
+email,
+problema,
+detalhes,
+dataEnvio: new Date().toLocaleString()
+};
+
+let pedidosSuporte = localStorage.getItem('pedidosSuporte');
+pedidosSuporte = pedidosSuporte ? JSON.parse(pedidosSuporte) : [];
+pedidosSuporte.push(novoPedidoSuporte);
+localStorage.setItem('pedidosSuporte', JSON.stringify(pedidosSuporte));
+
+alert('Pedido de suporte enviado com sucesso!');
+// Redirecionar ou limpar o formulário
+}
+
+
+// Adicionar novo admin (por um admin superior)
+if (addAdminBtn) {
+addAdminBtn.addEventListener('click', () => {
+if (!isSuperAdmin) {
+    alert('Você não tem permissão para adicionar novos administradores.');
+    return;
+}
+
+const addAdminMessage = document.getElementById('add-admin-message');
+const addAdminError = document.getElementById('add-admin-error');
+const emailInput = document.getElementById('add-admin-email');
+const passwordInput = document.getElementById('add-admin-password');
+
+const newEmail = emailInput.value;
+const newPassword = passwordInput.value;
+
+if (!newEmail || !newPassword) {
+    addAdminError.textContent = 'Por favor, preencha todos os campos.';
+    addAdminError.style.display = 'block';
+    addAdminMessage.style.display = 'none';
+    return;
+}
+
+// Verifica se o email já está cadastrado
+if (adminAccounts.some(admin => admin.email === newEmail)) {
+    addAdminError.textContent = 'Este email já está cadastrado.';
+    addAdminError.style.display = 'block';
+    addAdminMessage.style.display = 'none';
+    return;
+}
+
+// Adiciona o novo admin (não superior)
+adminAccounts.push({
+    email: newEmail,
+    password: newPassword,
+    isSuper: false
+});
+
+saveAdminAccounts(adminAccounts);
+renderAdminList();
+
+// Limpa o formulário e exibe mensagem de sucesso
+emailInput.value = '';
+passwordInput.value = '';
+addAdminMessage.style.display = 'block';
+addAdminError.style.display = 'none';
+
+setTimeout(() => {
+    addAdminMessage.style.display = 'none';
+}, 3000);
+});
+}
+
+// Funções para gerenciar produtos
+function loadProductsFromLocalStorage() {
+const storedProducts = localStorage.getItem('products');
+return storedProducts ? JSON.parse(storedProducts) : [];
+}
+
+function saveProductsToLocalStorage(productsToSave) {
+localStorage.setItem('products', JSON.stringify(productsToSave));
+}
+
+function renderAdminProducts(productsToRender) {
+if (!productList) return;
+
+productList.innerHTML = '';
+if (!productsToRender || productsToRender.length === 0) {
+productList.innerHTML = '<li class="no-products-message">Nenhuma peça cadastrada ainda.</li>';
+return;
+}
 
                 productsToRender.forEach((product, index) => {
                     const listItem = document.createElement('li');
@@ -445,223 +531,519 @@
             }
 
             function attachProductEventListeners() {
-                // Adicionar eventos aos botões de edição de produtos
-                document.querySelectorAll('.edit-button').forEach(button => {
-                    button.addEventListener('click', handleEditProduct);
-                });
-                
-                document.querySelectorAll('.save').forEach(button => {
-                    button.addEventListener('click', handleSaveProductEdit);
-                });
-                
-                document.querySelectorAll('.cancel').forEach(button => {
-                    button.addEventListener('click', handleCancelProductEdit);
-                });
-                
-                document.querySelectorAll('.delete-button').forEach(button => {
-                    button.addEventListener('click', handleDeleteProduct);
-                });
+        // Adicionar eventos aos botões de edição de produtos
+        document.querySelectorAll('.edit-button').forEach(button => {
+            button.addEventListener('click', handleEditProduct);
+        });
+
+        document.querySelectorAll('.save').forEach(button => {
+            button.addEventListener('click', handleSaveProductEdit);
+        });
+
+        document.querySelectorAll('.cancel').forEach(button => {
+            button.addEventListener('click', handleCancelProductEdit);
+        });
+
+        document.querySelectorAll('.delete-button').forEach(button => {
+            button.addEventListener('click', handleDeleteProduct);
+        });
+    }
+
+    function handleEditProduct(event) {
+        const button = event.currentTarget;
+        const productItem = button.closest('.product-item');
+        const productActions = productItem.querySelector('.product-actions');
+        const editControls = productItem.querySelector('.edit-controls');
+
+        // Esconde os controles de edição de todos os outros itens
+        document.querySelectorAll('.product-item').forEach(item => {
+            if (item !== productItem) {
+                item.querySelector('.product-actions').style.display = 'flex';
+                item.querySelector('.edit-controls').style.display = 'none';
+            }
+        });
+
+        // Mostra os controles de edição deste item
+        productActions.style.display = 'none';
+        editControls.style.display = 'block';
+    }
+
+    function handleSaveProductEdit(event) {
+        const button = event.currentTarget;
+        const index = parseInt(button.dataset.index);
+        const productItem = button.closest('.product-item');
+
+        const valueInput = productItem.querySelector(`#value-${index}`);
+        const quantityInput = productItem.querySelector(`#quantity-${index}`);
+
+        const newValue = parseFloat(valueInput.value);
+        const newQuantity = parseInt(quantityInput.value);
+
+        if (isNaN(newValue) || newValue < 0) {
+            alert('Por favor, digite um valor válido.');
+            return;
+        }
+
+        if (isNaN(newQuantity) || newQuantity < 0) {
+            alert('Por favor, digite uma quantidade válida.');
+            return;
+        }
+
+        // Atualiza o produto
+        products[index].value = newValue.toFixed(2);
+        products[index].quantity = newQuantity;
+
+        // Salva atualização e volta para o modo de visualização
+        saveProductsToLocalStorage(products);
+        renderAdminProducts(products);
+        alert('Produto atualizado com sucesso!');
+    }
+
+    function handleCancelProductEdit(event) {
+        const button = event.currentTarget;
+        const productItem = button.closest('.product-item');
+        const productActions = productItem.querySelector('.product-actions');
+        const editControls = productItem.querySelector('.edit-controls');
+
+        // Volta para o modo de visualização
+        productActions.style.display = 'flex';
+        editControls.style.display = 'none';
+    }
+
+    function handleDeleteProduct(event) {
+        const button = event.currentTarget;
+        const index = parseInt(button.dataset.index);
+        const product = products[index];
+
+        if (confirm(`Tem certeza que deseja excluir o produto "${product.name}"?`)) {
+            products.splice(index, 1);
+            saveProductsToLocalStorage(products);
+            renderAdminProducts(products);
+            alert('Produto excluído com sucesso!');
+        }
+    }
+
+    // Gerenciar admins (apenas para admin superior)
+    function renderAdminList() {
+        if (!adminList) return;
+
+        adminList.innerHTML = '';
+
+        if (adminAccounts.length === 0) {
+            adminList.innerHTML = '<li>Nenhum administrador cadastrado.</li>';
+            return;
+        }
+
+        adminAccounts.forEach((admin, index) => {
+            const adminItem = document.createElement('li');
+            adminItem.className = 'admin-item';
+
+            adminItem.innerHTML = `
+                <div class="admin-info">
+                    <span class="admin-email">${admin.email}</span>
+                    ${admin.isSuper ? `<span class="admin-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        Admin Superior
+                    </span>` : ''}
+                </div>
+                <button class="button delete-admin ${admin.isSuper ? 'disabled' : ''}"
+                        data-index="${index}"
+                        ${admin.isSuper ? 'disabled' : ''}>
+                    Remover
+                </button>
+            `;
+
+            adminList.appendChild(adminItem);
+        });
+
+        // Adiciona eventos aos botões de remoção
+        document.querySelectorAll('.delete-admin').forEach(button => {
+            if (!button.hasAttribute('disabled')) {
+                button.addEventListener('click', handleRemoveAdmin);
+            }
+        });
+    }
+
+    function handleRemoveAdmin(event) {
+        const button = event.currentTarget;
+        const index = parseInt(button.dataset.index);
+        const admin = adminAccounts[index];
+
+        if (admin.isSuper) {
+            alert('Não é possível remover o administrador superior.');
+            return;
+        }
+
+        if (confirm(`Tem certeza que deseja remover o administrador ${admin.email}?`)) {
+            adminAccounts.splice(index, 1);
+            saveAdminAccounts(adminAccounts);
+            renderAdminList();
+            alert('Administrador removido com sucesso!');
+        }
+    }
+    // Funções para carregar dados do localStorage
+    function loadOrcamentos() {
+        const storedOrcamentos = localStorage.getItem('orcamentos');
+        return storedOrcamentos ? JSON.parse(storedOrcamentos) : [];
+    }
+
+    function loadPedidosSuporte() {
+    const storedPedidos = localStorage.getItem('pedidosSuporte');
+    return storedPedidos ? JSON.parse(storedPedidos) : [];
+}
+
+function loadMensagensFaleConosco() {
+    const storedMensagens = localStorage.getItem('mensagensFaleConosco');
+    return storedMensagens ? JSON.parse(storedMensagens) : [];
+}
+
+    // Funções para renderizar os dados nas abas
+    function renderOrcamentos() {
+    const budgetsContent = document.getElementById('budgets-content');
+    budgetsContent.innerHTML = '';
+
+    const orcamentos = localStorage.getItem('orcamentos');
+    const listaOrcamentos = orcamentos ? JSON.parse(orcamentos) : [];
+
+    if (listaOrcamentos.length === 0) {
+        budgetsContent.innerHTML = '<p>Nenhum orçamento recebido.</p>';
+        return;
+    }
+
+    const listaHTML = document.createElement('ul');
+    listaOrcamentos.forEach((orcamento, index) => {
+        const isConcluido = orcamento.concluido || false; // Verifica se a propriedade 'concluido' existe
+
+        const itemLista = document.createElement('li');
+        itemLista.innerHTML = `
+            <strong>Nome:</strong> ${orcamento.nome}<br>
+            <strong>Email:</strong> ${orcamento.email}<br>
+            <strong>Telefone:</strong> ${orcamento.telefone}<br>
+            <strong>Serviço Solicitado:</strong> ${orcamento.servico}<br>
+            <strong>Descrição:</strong> ${orcamento.descricao}<br>
+            <strong>Data de Envio:</strong> ${orcamento.dataEnvio}<br>
+            <label>
+                Concluído:
+                <input type="checkbox" data-index="${index}" ${isConcluido ? 'checked' : ''} onchange="atualizarStatusOrcamento(this)">
+            </label>
+            <button class="button delete-button danger" onclick="excluirOrcamento(${index})">Excluir</button>
+            <hr>
+        `;
+        listaHTML.appendChild(itemLista);
+    });
+
+    budgetsContent.appendChild(listaHTML);
+}
+
+window.excluirOrcamento = function(index) {
+    if (confirm('Tem certeza que deseja excluir este orçamento?')) {
+        const orcamentos = localStorage.getItem('orcamentos');
+        let listaOrcamentos = orcamentos ? JSON.parse(orcamentos) : [];
+
+        if (index >= 0 && index < listaOrcamentos.length) {
+            listaOrcamentos.splice(index, 1);
+            localStorage.setItem('orcamentos', JSON.stringify(listaOrcamentos));
+            renderOrcamentos(); // Atualiza a exibição
+        } else {
+            console.error('Índice de orçamento inválido:', index);
+        }
+    }
+};
+
+
+window.atualizarStatusOrcamento = function(checkbox) {
+    const index = parseInt(checkbox.dataset.index);
+    const isChecked = checkbox.checked;
+
+    const orcamentos = localStorage.getItem('orcamentos');
+    let listaOrcamentos = orcamentos ? JSON.parse(orcamentos) : [];
+
+    if (index >= 0 && index < listaOrcamentos.length) {
+        listaOrcamentos[index] = { ...listaOrcamentos[index], concluido: isChecked };
+        localStorage.setItem('orcamentos', JSON.stringify(listaOrcamentos));
+    } else {
+        console.error('Índice de orçamento inválido para atualização de status:', index);
+    }
+};
+
+function renderPedidosSuporte() {
+    supportRequestsContent.innerHTML = '<h2>Pedidos de Suporte</h2>';
+    const pedidos = loadPedidosSuporte();
+    if (pedidos.length === 0) {
+        supportRequestsContent.innerHTML += '<p>Nenhum pedido de suporte recebido.</p>';
+        return;
+    }
+    const listaPedidos = document.createElement('ul');
+    pedidos.forEach((pedido, index) => {
+        const isConcluido = pedido.concluido || false;
+
+        const item = document.createElement('li');
+        item.innerHTML = `
+            <strong>Nome:</strong> ${pedido.nome}<br>
+            <strong>Email:</strong> ${pedido.email}<br>
+            <strong>Problema:</strong> ${pedido.problema}<br>
+            <strong>Detalhes:</strong> ${pedido.detalhes}<br>
+            <strong>Enviado em:</strong> ${pedido.dataEnvio}<br>
+            <label>
+                Concluído:
+                <input type="checkbox" data-index="${index}" ${isConcluido ? 'checked' : ''} onchange="atualizarStatusSuporte(this)">
+            </label>
+            <button class="button delete-button danger" onclick="excluirPedidoSuporte(${index})">Excluir</button>
+            <hr>
+        `;
+        listaPedidos.appendChild(item);
+    });
+    supportRequestsContent.appendChild(listaPedidos);
+}
+
+window.atualizarStatusSuporte = function(checkbox) {
+    const index = parseInt(checkbox.dataset.index);
+    const isChecked = checkbox.checked;
+
+    let pedidos = loadPedidosSuporte();
+    if (index >= 0 && index < pedidos.length) {
+        pedidos[index] = { ...pedidos[index], concluido: isChecked };
+        localStorage.setItem('pedidosSuporte', JSON.stringify(pedidos));
+    } else {
+        console.error('Índice inválido de pedido de suporte:', index);
+    }
+};
+
+
+window.excluirPedidoSuporte = function(index) {
+    if (confirm('Deseja excluir este pedido de suporte?')) {
+        let pedidos = loadPedidosSuporte();
+        if (index >= 0 && index < pedidos.length) {
+            pedidos.splice(index, 1);
+            localStorage.setItem('pedidosSuporte', JSON.stringify(pedidos));
+            renderPedidosSuporte();
+        } else {
+            console.error('Índice inválido para exclusão de suporte:', index);
+        }
+    }
+};
+
+function renderMensagensFaleConosco() {
+    contactUsContent.innerHTML = '<h2>Mensagens Fale Conosco</h2>';
+    const mensagens = loadMensagensFaleConosco();
+    if (mensagens.length === 0) {
+        contactUsContent.innerHTML += '<p>Nenhuma mensagem recebida.</p>';
+        return;
+    }
+    const listaMensagens = document.createElement('ul');
+    mensagens.forEach((mensagem, index) => {
+        const isConcluido = mensagem.concluido || false;
+
+        const item = document.createElement('li');
+        item.innerHTML = `
+            <strong>Nome:</strong> ${mensagem.nome}<br>
+            <strong>Email:</strong> ${mensagem.email}<br>
+            <strong>Assunto:</strong> ${mensagem.assunto}<br>
+            <strong>Mensagem:</strong> ${mensagem.mensagem}<br>
+            <strong>Enviado em:</strong> ${mensagem.dataEnvio}<br>
+            <label>
+                Concluído:
+                <input type="checkbox" data-index="${index}" ${isConcluido ? 'checked' : ''} onchange="atualizarStatusMensagem(this)">
+            </label>
+            <button class="button delete-button danger" onclick="excluirMensagem(${index})">Excluir</button>
+            <hr>
+        `;
+        listaMensagens.appendChild(item);
+    });
+    contactUsContent.appendChild(listaMensagens);
+}
+
+window.atualizarStatusMensagem = function(checkbox) {
+    const index = parseInt(checkbox.dataset.index);
+    const isChecked = checkbox.checked;
+
+    let mensagens = loadMensagensFaleConosco();
+    if (index >= 0 && index < mensagens.length) {
+        mensagens[index] = { ...mensagens[index], concluido: isChecked };
+        localStorage.setItem('mensagensFaleConosco', JSON.stringify(mensagens));
+    } else {
+        console.error('Índice inválido de mensagem Fale Conosco:', index);
+    }
+};
+
+
+window.excluirMensagem = function(index) {
+    if (confirm('Deseja excluir esta mensagem?')) {
+        let mensagens = loadMensagensFaleConosco();
+        if (index >= 0 && index < mensagens.length) {
+            mensagens.splice(index, 1);
+            localStorage.setItem('mensagensFaleConosco', JSON.stringify(mensagens));
+            renderMensagensFaleConosco();
+        } else {
+            console.error('Índice inválido para exclusão de mensagem:', index);
+        }
+    }
+};
+
+
+    
+
+    function switchTab(tabName) {
+        // Remove classe "active" de todas as abas e conteúdos
+        [tabProducts, tabAddProduct, tabAddNews, tabAdmins, tabBudgets, tabSupportRequests, tabContactUs].forEach(tab => {
+            if (tab) tab.classList.remove('active');
+        });
+        [productsContent, addProductContent, addNewsContent, adminsContent, budgetsContent, supportRequestsContent, contactUsContent].forEach(content => {
+            if (content) content.classList.remove('active');
+        });
+
+        // Ativa a aba selecionada
+        if (tabName === 'products' && tabProducts && productsContent) {
+            tabProducts.classList.add('active');
+            productsContent.classList.add('active');
+        } else if (tabName === 'add-product' && tabAddProduct && addProductContent) {
+            tabAddProduct.classList.add('active');
+            addProductContent.classList.add('active');
+        } else if (tabName === 'add-news' && tabAddNews && addNewsContent) {
+            tabAddNews.classList.add('active');
+            addNewsContent.classList.add('active');
+        } else if (tabName === 'admins' && tabAdmins && adminsContent) {
+            tabAdmins.classList.add('active');
+            adminsContent.classList.add('active');
+        } else if (tabName === 'budgets' && tabBudgets && budgetsContent) {
+            tabBudgets.classList.add('active');
+            budgetsContent.classList.add('active');
+            renderOrcamentos(); // Carrega e exibe os orçamentos ao ativar a aba
+        } else if (tabName === 'support-requests' && tabSupportRequests && supportRequestsContent) {
+            tabSupportRequests.classList.add('active');
+            supportRequestsContent.classList.add('active');
+            renderPedidosSuporte(); // Carrega e exibe os pedidos de suporte
+        } else if (tabName === 'contact-us' && tabContactUs && contactUsContent) {
+            tabContactUs.classList.add('active');
+            contactUsContent.classList.add('active');
+            renderMensagensFaleConosco(); // Carrega e exibe as mensagens fale conosco
+        }
+    }
+
+    function setupTabs() {
+        // Inicializar sistema de abas
+        if (tabProducts) tabProducts.addEventListener('click', () => switchTab('products'));
+        if (tabAddProduct) tabAddProduct.addEventListener('click', () => switchTab('add-product'));
+        if (tabAddNews) tabAddNews.addEventListener('click', () => switchTab('add-news'));
+        if (tabAdmins) tabAdmins.addEventListener('click', () => switchTab('admins'));
+        if (tabBudgets) tabBudgets.addEventListener('click', () => switchTab('budgets'));
+        if (tabSupportRequests) tabSupportRequests.addEventListener('click', () => switchTab('support-requests'));
+        if (tabContactUs) tabContactUs.addEventListener('click', () => switchTab('contact-us'));
+
+        // Ativa a primeira aba por padrão
+        switchTab('add-news');
+    }
+
+    // Inicialização
+    if (isAdminLoggedIn) {
+        showAdminPanel();
+    } else {
+        loginSection.style.display = 'flex';
+        adminContent.style.display = 'none';
+    }
+
+    // Adicionar produto
+    if (addProductForm) {
+        addProductForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const nameInput = document.getElementById('new-product-name');
+            const detailsInput = document.getElementById('new-product-details');
+            const valueInput = document.getElementById('new-product-value');
+            const quantityInput = document.getElementById('new-product-quantity');
+            const imageInput = document.getElementById('new-product-image');
+
+            const name = nameInput.value.trim();
+            const details = detailsInput.value.trim();
+            const value = parseFloat(valueInput.value);
+            const quantity = parseInt(quantityInput.value);
+            const image = imageInput.value.trim();
+
+            if (!name) {
+                alert('Por favor, informe o nome do produto.');
+                nameInput.focus();
+                return;
             }
 
-            function handleEditProduct(event) {
-                const button = event.currentTarget;
-                const productItem = button.closest('.product-item');
-                const productActions = productItem.querySelector('.product-actions');
-                const editControls = productItem.querySelector('.edit-controls');
-                
-                // Esconde os controles de edição de todos os outros itens
-                document.querySelectorAll('.product-item').forEach(item => {
-                    if (item !== productItem) {
-                        item.querySelector('.product-actions').style.display = 'flex';
-                        item.querySelector('.edit-controls').style.display = 'none';
-                    }
-                });
-                
-                // Mostra os controles de edição deste item
-                productActions.style.display = 'none';
-                editControls.style.display = 'block';
+            if (isNaN(value) || value < 0) {
+                alert('Por favor, digite um valor válido.');
+                valueInput.focus();
+                return;
             }
 
-            function handleSaveProductEdit(event) {
-                const button = event.currentTarget;
-                const index = parseInt(button.dataset.index);
-                const productItem = button.closest('.product-item');
-                
-                const valueInput = productItem.querySelector(`#value-${index}`);
-                const quantityInput = productItem.querySelector(`#quantity-${index}`);
-                
-                const newValue = parseFloat(valueInput.value);
-                const newQuantity = parseInt(quantityInput.value);
-                
-                if (isNaN(newValue) || newValue < 0) {
-                    alert('Por favor, digite um valor válido.');
-                    return;
-                }
-                
-                if (isNaN(newQuantity) || newQuantity < 0) {
-                    alert('Por favor, digite uma quantidade válida.');
-                    return;
-                }
-                
-                // Atualiza o produto
-                products[index].value = newValue.toFixed(2);
-                products[index].quantity = newQuantity;
-                
-                // Salva atualização e volta para o modo de visualização
-                saveProductsToLocalStorage(products);
-                renderAdminProducts(products);
-                alert('Produto atualizado com sucesso!');
+            if (isNaN(quantity) || quantity < 0) {
+                alert('Por favor, digite uma quantidade válida.');
+                quantityInput.focus();
+                return;
             }
 
-            function handleCancelProductEdit(event) {
-                const button = event.currentTarget;
-                const productItem = button.closest('.product-item');
-                const productActions = productItem.querySelector('.product-actions');
-                const editControls = productItem.querySelector('.edit-controls');
-                
-                // Volta para o modo de visualização
-                productActions.style.display = 'flex';
-                editControls.style.display = 'none';
+            const newProduct = {
+                id: Date.now().toString(),
+                name,
+                details,
+                value: value.toFixed(2),
+                quantity,
+                image
+            };
+
+            products.push(newProduct);
+            saveProductsToLocalStorage(products);
+            renderAdminProducts(products);
+
+            // Limpa o formulário
+            addProductForm.reset();
+            alert('Produto adicionado com sucesso!');
+            switchTab('products'); // Volta para a aba de produtos após adicionar
+        });
+    }
+
+    // Adicionar notícia
+    if (addNewsForm) {
+        addNewsForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const titleInput = document.getElementById('news-title');
+            const descriptionInput = document.getElementById('news-description');
+
+            const title = titleInput.value.trim();
+            const description = descriptionInput.value.trim();
+
+            if (!title) {
+                alert('Por favor, informe o título da notícia.');
+                titleInput.focus();
+                return;
             }
 
-            function handleDeleteProduct(event) {
-                const button = event.currentTarget;
-                const index = parseInt(button.dataset.index);
-                const product = products[index];
-                
-                if (confirm(`Tem certeza que deseja excluir o produto "${product.name}"?`)) {
-                    products.splice(index, 1);
-                    saveProductsToLocalStorage(products);
-                    renderAdminProducts(products);
-                    alert('Produto excluído com sucesso!');
-                }
+            if (!description) {
+                alert('Por favor, informe a descrição da notícia.');
+                descriptionInput.focus();
+                return;
             }
 
-            // Gerenciar admins (apenas para admin superior)
-            function renderAdminList() {
-                if (!adminList) return;
-                
-                adminList.innerHTML = '';
-                
-                if (adminAccounts.length === 0) {
-                    adminList.innerHTML = '<li>Nenhum administrador cadastrado.</li>';
-                    return;
-                }
-                
-                adminAccounts.forEach((admin, index) => {
-                    const adminItem = document.createElement('li');
-                    adminItem.className = 'admin-item';
-                    
-                    adminItem.innerHTML = `
-                        <div class="admin-info">
-                            <span class="admin-email">${admin.email}</span>
-                            ${admin.isSuper ? `<span class="admin-badge">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                                Admin Superior
-                            </span>` : ''}
-                        </div>
-                        <button class="button delete-admin ${admin.isSuper ? 'disabled' : ''}" 
-                                data-index="${index}" 
-                                ${admin.isSuper ? 'disabled' : ''}>
-                            Remover
-                        </button>
-                    `;
-                    
-                    adminList.appendChild(adminItem);
-                });
-                
-                // Adiciona eventos aos botões de remoção
-                document.querySelectorAll('.delete-admin').forEach(button => {
-                    if (!button.hasAttribute('disabled')) {
-                        button.addEventListener('click', handleRemoveAdmin);
-                    }
-                });
-            }
+            const newNews = {
+                id: Date.now().toString(),
+                title,
+                description,
+                date: new Date().toLocaleDateString()
+            };
 
-            function handleRemoveAdmin(event) {
-                const button = event.currentTarget;
-                const index = parseInt(button.dataset.index);
-                const admin = adminAccounts[index];
-                
-                if (admin.isSuper) {
-                    alert('Não é possível remover o administrador superior.');
-                    return;
-                }
-                
-                if (confirm(`Tem certeza que deseja remover o administrador ${admin.email}?`)) {
-                    adminAccounts.splice(index, 1);
-                    saveAdminAccounts(adminAccounts);
-                    renderAdminList();
-                    alert('Administrador removido com sucesso!');
-                }
-            }
+            news.push(newNews);
+            saveNewsToLocalStorage(news);
+            renderNewsList();
 
-            // Adicionar produto
-            if (addProductForm) {
-                addProductForm.addEventListener('submit', (event) => {
-                    event.preventDefault();
-                    
-                    const nameInput = document.getElementById('new-product-name');
-                    const detailsInput = document.getElementById('new-product-details');
-                    const valueInput = document.getElementById('new-product-value');
-                    const quantityInput = document.getElementById('new-product-quantity');
-                    const imageInput = document.getElementById('new-product-image');
-                    
-                    const name = nameInput.value.trim();
-                    const details = detailsInput.value.trim();
-                    const value = parseFloat(valueInput.value);
-                    const quantity = parseInt(quantityInput.value);
-                    const image = imageInput.value.trim();
-                    
-                    if (!name) {
-                        alert('Por favor, informe o nome do produto.');
-                        nameInput.focus();
-                        return;
-                    }
-                    
-                    if (isNaN(value) || value < 0) {
-                        alert('Por favor, informe um valor válido.');
-                        valueInput.focus();
-                        return;
-                    }
-                    
-                    if (isNaN(quantity) || quantity < 0) {
-                        alert('Por favor, informe uma quantidade válida.');
-                        quantityInput.focus();
-                        return;
-                    }
-                    
-                    // Cria o novo produto
-                    const newProduct = {
-                        id: Date.now().toString(),
-                        name,
-                        details,
-                        value: value.toFixed(2),
-                        quantity,
-                        image: image || 'placeholder.svg'
-                    };
-                    
-                    // Adiciona ao array e salva
-                    products.push(newProduct);
-                    saveProductsToLocalStorage(products);
-                    
-                    // Limpa o formulário
-                    addProductForm.reset();
-                    
-                    // Atualiza a lista e mostra mensagem
-                    renderAdminProducts(products);
-                    alert(`Produto "${name}" adicionado com sucesso!`);
-                    
-                    // Volta para a aba de produtos
-                    switchTab('products');
-                });
-            }
+            // Limpa o formulário
+            addNewsForm.reset();
+            alert('Notícia adicionada com sucesso!');
+            switchTab('add-news'); // Mantém na aba de adicionar notícias ou muda conforme preferência
+        });
+    }
+
+            
 
             // Sistema de temas claro/escuro
             let isDarkTheme = localStorage.getItem('isDarkTheme') === 'true';
-            
+
             function applyTheme() {
                 if (isDarkTheme) {
                     document.body.classList.add('dark-theme');
@@ -671,59 +1053,26 @@
                     themeToggleButton.textContent = '🌙'; // Lua para modo escuro
                 }
             }
-            
-            themeToggleButton.addEventListener('click', () => {
-                isDarkTheme = !isDarkTheme;
-                localStorage.setItem('isDarkTheme', isDarkTheme);
-                applyTheme();
-            });
-            
-            // Inicialização
+
+            if (themeToggleButton) {
+                themeToggleButton.addEventListener('click', () => {
+                    isDarkTheme = !isDarkTheme;
+                    localStorage.setItem('isDarkTheme', isDarkTheme);
+                    applyTheme();
+                });
+            }
+
+            // Aplica o tema ao carregar a página
             applyTheme();
-            
-            // Verificar estado de login e mostrar tela correta
+
+            // Verifica se o admin está logado ao carregar a página
             if (isAdminLoggedIn) {
                 showAdminPanel();
             } else {
                 loginSection.style.display = 'flex';
                 adminContent.style.display = 'none';
             }
-            
-            // Configurar sistema de abas
-            setupTabs();
-
-            // Expor funções para uso global (fora do escopo DOMContentLoaded)
-            window.loginAdmin = loginAdmin;
-            window.logoutAdmin = logoutAdmin;
         });
-
-        let inactivityTimeout;
-        const inactivityTime = 10 * 60 * 1000; // 10 minutos em milissegundos
-
-        function logoutAdminAutomatically() {
-            // Limpa informações de sessão/localStorage/cookies relacionados ao login.
-            localStorage.removeItem('isAdminLoggedIn');
-            localStorage.removeItem('loggedInAdminEmail');
-            localStorage.removeItem('isAdminSuper');
-            window.location.href = 'index.html'; // Redireciona para a página de login
-        }
-
-        function resetInactivityTimer() {
-            clearTimeout(inactivityTimeout);
-            inactivityTimeout = setTimeout(logoutAdminAutomatically, inactivityTime);
-        }
-
-        // Adiciona listeners de eventos para resetar o timer em caso de atividade
-        window.onload = resetInactivityTimer; // Reseta o timer ao carregar a página
-        document.addEventListener('mousemove', resetInactivityTimer);
-        document.addEventListener('keypress', resetInactivityTimer);
-        document.addEventListener('click', resetInactivityTimer);
-        document.addEventListener('scroll', resetInactivityTimer);     
     </script>
-<footer>
-<p id="system-version" style="text-align: center; margin-bottom: 5px; font-size: 0.8em; color: #777;"></p>
-</footer>
-
-<script src="js/version.js"></script>
 </body>
 </html>
