@@ -144,11 +144,15 @@ nav a:hover {
     max-width: 100%;
     text-align: center;
     margin-top: 20px;
+    padding: 0 10px; /* margem interna lateral para não encostar nas bordas em telas pequenas */
+    box-sizing: border-box;
 }
 
 .banner img {
     width: 100%;
     height: auto;
+    max-height: 500px;
+    object-fit: cover;
     border-radius: 10px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 }
@@ -176,17 +180,18 @@ nav a:hover {
     bottom: 15px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 16px;
+    font-size: clamp(12px, 2.5vw, 16px); /* responsivo */
     background: rgba(0, 0, 0, 0.6);
     color: white;
     padding: 8px 12px;
     border-radius: 8px;
     white-space: nowrap;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 .banner h3 {
-    margin-top: 20px;
-    font-size: 28px;
+    margin-top: 15px;
+    font-size: clamp(18px, 4vw, 28px); /* responsivo: varia entre 18px e 28px */
     font-weight: bold;
 }
 
@@ -409,13 +414,16 @@ footer p.copyright {
 }
 
 @media (max-width: 480px) {
-    .banner h3 {
-        font-size: 20px;
+    .banner {
+        margin-top: 15px;
+    }
+
+    .banner img {
+        max-height: 300px;
     }
 
     .overlay2 {
-        font-size: 13px;
-        padding: 5px 8px;
+        padding: 6px 10px;
     }
 }
 
