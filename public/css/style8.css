@@ -70,22 +70,32 @@ body.dark-theme {
 }
 
 /* -------------------------------------------------- */
-/* Estilos específicos para a seção de Login */
+/* Estilos específicos para a seção de Login (MODIFICADO NOVAMENTE) */
 /* -------------------------------------------------- */
 #loginSection {
+    position: relative;
+    top: -100px;
     max-width: 400px;
     margin: 100px auto; /* Centraliza vertical e horizontalmente */
-    padding: 20px;
+    padding: 30px; /* Aumentei um pouco o padding interno */
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9; /* Um fundo claro para destacar */
     color: #333; /* Cor do texto padrão */
+    text-align: center; /* Centraliza o conteúdo dentro da seção */
+    display: flex; /* Usando flexbox para controlar o layout interno */
+    flex-direction: column; /* Alinha os itens verticalmente */
+    align-items: center; /* Centraliza os itens horizontalmente */
 }
 
 #loginSection h2 {
-    color: #333 !important; /* Cor do título */
-    text-align: center; /* Centraliza o título */
-    margin-bottom: 20px;
+    color: #007bff !important; /* Uma cor mais destacada para o título */
+    font-size: 1.8em; /* Reduzi o tamanho da fonte */
+    font-weight: bold; /* Deixei em negrito */
+    text-align: center; /* Garante que o título está centralizado */
+    margin-bottom: 20px; /* Reduzi um pouco o espaço abaixo do título */
+    letter-spacing: 1px; /* Adiciona um pequeno espaçamento entre as letras */
+    width: 100%; /* Garante que o título ocupe a largura total */
 }
 
 #loginSection label {
@@ -93,30 +103,35 @@ body.dark-theme {
     margin-bottom: 5px; /* Espaço abaixo do label */
     color: #555; /* Cor do label */
     font-weight: bold; /* Deixa o label em negrito */
+    text-align: left; /* Alinha o label à esquerda */
+    width: 100%; /* Garante que o label ocupe a largura total */
 }
 
 #loginSection input[type="email"],
 #loginSection input[type="password"] {
     width: calc(100% - 20px); /* Largura total menos o padding */
-    padding: 10px;
-    margin-bottom: 15px; /* Espaço abaixo do input */
+    padding: 12px; /* Aumentei um pouco o padding dos inputs */
+    margin-bottom: 20px; /* Aumentei o espaço abaixo do input */
     border: 1px solid #ccc; /* Borda do input */
     border-radius: 5px; /* Arredonda as bordas */
     background-color: #fff; /* Fundo branco */
     color: #333; /* Cor do texto dentro do input */
     font-size: 16px; /* Tamanho da fonte */
+    box-sizing: border-box; /* Garante que o padding não afete a largura total */
+    width: 100%; /* Garante que os inputs ocupem a largura total */
 }
 
 #loginSection button {
     width: 100%; /* Largura total do botão */
-    padding: 10px 15px; /* Padding do botão */
+    padding: 12px 15px; /* Aumentei um pouco o padding do botão */
     background-color: #007bff; /* Cor de fundo do botão */
     color: #fff; /* Cor do texto do botão */
     border: none; /* Remove a borda */
     border-radius: 5px; /* Arredonda as bordas */
     cursor: pointer; /* Muda o cursor ao passar por cima */
-    font-size: 16px; /* Tamanho da fonte */
+    font-size: 18px; /* Aumentei um pouco o tamanho da fonte do botão */
     transition: background-color 0.2s ease; /* Transição suave na cor */
+    margin-top: 20px; /* Adicionei um pouco de espaço acima do botão */
 }
 
 #loginSection button:hover {
@@ -126,6 +141,10 @@ body.dark-theme {
 #loginSection p a {
     color: #007bff; /* Cor do link */
     text-decoration: none; /* Remove o sublinhado padrão */
+    display: block; /* Faz o link ocupar a linha toda */
+    margin-top: 15px; /* Espaço acima do link */
+    text-align: center; /* Centraliza o link */
+    width: 100%; /* Garante que o link ocupe a largura total */
 }
 
 #loginSection p a:hover {
@@ -134,19 +153,24 @@ body.dark-theme {
 
 #loginSection #login-error {
     color: red; /* Cor vermelha para erro */
-    margin-top: 10px; /* Espaço acima da mensagem */
+    margin-top: 15px; /* Espaço acima da mensagem */
+    text-align: center; /* Centraliza a mensagem de erro */
+    font-weight: bold; /* Deixa a mensagem de erro em negrito */
+    width: 100%; /* Garante que a mensagem de erro ocupe a largura total */
 }
 
 .login-logo {
     text-align: center; /* Centraliza o logo */
-    margin-bottom: 20px; /* Espaço abaixo do logo */
+    margin-bottom: 30px; /* Aumentei o espaço abaixo do logo */
+    width: 100%; /* Garante que o logo ocupe a largura total */
 }
 
 .login-logo img {
-    max-width: 200px; /* Largura máxima do logo */
+    max-width: 300px; /* Reduzi um pouco o tamanho do logo para não dominar */
     height: auto; /* Altura automática */
 }
 
+/* Estilos para tema escuro (mantive os seus) */
 body.dark-theme #loginSection {
     background-color: #2a2a2a;
     color: #f5f5f5;
