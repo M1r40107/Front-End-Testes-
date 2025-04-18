@@ -26,7 +26,7 @@ header {
 .logo {
     position: relative;
     text-align: left;
-    right: 15%;
+    right: 12%;
     padding-right: 20%;
 }
 
@@ -158,15 +158,15 @@ nav a:hover {
 .overlay2 {
     position: absolute;
     top: 110%;              /* Se quer abaixo do elemento pai */
-    left: 415%;              /* Centraliza horizontalmente */
+    left: 410%;              /* Centraliza horizontalmente */
     transform: translateX(-50%); /* Centraliza usando o centro do próprio elemento */
-    
+
     font-size: clamp(12px, 2.5vw, 16px); /* responsivo */
     background: rgba(0, 0, 0, 0.6);
-    
+
     /* Background-position só funciona se tiver background-image */
-    background-position: 10% 50%; 
-    
+    background-position: 10% 50%;
+
     color: white;
     padding: 8px 12px;
     border-radius: 8px;
@@ -206,6 +206,11 @@ nav a:hover {
 .carousel-images {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    cursor: grab; /* mostra que pode ser arrastado */
+}
+
+.carousel-images:active {
+    cursor: grabbing;
 }
 
 /* Garanta que a imagem não ultrapasse o container 'a' */
@@ -338,80 +343,6 @@ footer p.copyright {
     right: 70px;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .buttons {
-        margin-top: 10px;
-    }
-
-    .banner:first-of-type {
-        position: relative;
-        left: 0;
-        margin: 0 auto;
-        width: 80%;
-    }
-
-    .banner img {
-        width: 100%;
-    }
-
-    .banner h3 {
-        font-size: 22px;
-    }
-
-    .overlay2 {
-        font-size: 14px;
-        padding: 6px 10px;
-    }
-
-
-    .carousel-container {
-        top: 350px;
-    }
-
-    .carousel-images img {
-        width: 90%;
-    }
-
-    .logo {
-        right: auto;
-        text-align: center;
-        padding-right: 0;
-        margin-bottom: 10px;
-    }
-
-    nav {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-
-    nav a {
-        margin: 0 10px;
-    }
-
-    .buttons {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .banner {
-        margin-top: 15px;
-    }
-
-    .banner img {
-        max-height: 300px;
-    }
-
-    .overlay2 {
-        padding: 6px 10px;
-    }
-}
 
 /* nova regra para a imagem fundo.png */
 .impact-container img {
@@ -823,7 +754,7 @@ body.dark-theme .close-sidebar-button:hover {
     touch-action: pan-y;
     user-select: none;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+    scrollbar-width: none;   /* Firefox */
 }
 
 .carousel-container::-webkit-scrollbar {
@@ -922,4 +853,365 @@ body.dark-theme .settings-sidebar .news-button-sidebar {
 
 body.dark-theme .settings-sidebar .news-button-sidebar:hover {
     background-color: #45a049; /* Manter a cor de hover */
+}
+
+/* Responsividade */
+@media (max-width: 992px) { /* Para tablets maiores e telas menores de desktop */
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .logo {
+        right: auto;
+        text-align: center;
+        padding-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .logo h1 {
+        font-size: 28px;
+    }
+
+    .logo p {
+        font-size: 16px;
+    }
+
+    nav {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    nav a {
+        margin: 0 10px;
+        font-size: 1em;
+    }
+
+    .buttons {
+        margin-top: 10px;
+        justify-content: center;
+        padding-right: 0;
+    }
+
+    .buttons button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .banner:first-of-type {
+        position: relative;
+        left: auto;
+        margin: 20px auto;
+        width: 70%;
+        right: auto;
+    }
+
+    .banner:first-of-type img {
+        left: auto;
+        width: 100%;
+    }
+
+    .banner {
+        margin-top: 15px;
+        padding: 0 5px;
+    }
+
+    .banner img {
+        max-height: 400px;
+    }
+
+    .overlay2 {
+        font-size: 14px;
+        padding: 6px 10px;
+        left: 50%;
+    }
+
+    .banner h3 {
+        font-size: 20px;
+    }
+
+    .carousel-container {
+        top: 300px;
+        margin-top: 20px;
+        width: 95%;
+        overflow: auto; /* Permite rolagem horizontal se os itens não caberem */
+        -ms-overflow-style: none; /* IE e Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .carousel-container::-webkit-scrollbar {
+        display: none; /* Chrome, Safari e Opera */
+    }
+
+    .carousel-images {
+        flex-wrap: nowrap; /* Impede que os itens quebrem para a próxima linha */
+        width: fit-content; /* Ocupa a largura total dos itens */
+    }
+
+    .carousel-images a {
+        flex: 0 0 auto; /* Cada item ocupa sua largura natural */
+        margin-right: 10px; /* Espaçamento entre os itens */
+    }
+
+    .carousel-images a:last-child {
+        margin-right: 0; /* Remove a margem do último item */
+    }
+
+    .carousel-images a img {
+        max-height: 300px;
+        width: auto; /* A imagem se ajusta proporcionalmente */
+    }
+
+    .carousel-images a p {
+        font-size: 14px;
+    }
+    #over {
+        font-size: 24px;
+        top: 300px;
+        margin-top: 30px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .footer-button {
+        margin-bottom: 10px;
+        width: 80%;
+    }
+
+    footer p.copyright {
+        padding-top: 10px;
+        border-top: 1px solid #333;
+        margin-top: 10px;
+    }
+
+
+    .settings-sidebar {
+        width: 90%;
+        right: -90%;
+    }
+
+    .chatbot-container {
+        width: 90%;
+        height: 80%;
+        bottom: auto;
+        top: 10%;
+        left: 5%;
+        right: auto;
+    }
+
+    .chatbot-toggle {
+        bottom: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 600px) { /* Para tablets menores e telefones maiores */
+    .logo h1 {
+        font-size: 24px;
+    }
+
+    .logo p {
+        font-size: 14px;
+    }
+
+    nav a {
+        font-size: 0.9em;
+        margin: 0 8px;
+    }
+
+    .buttons button {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .banner:first-of-type {
+        width: 90%;
+    }
+
+    .banner img {
+        max-height: 300px;
+    }
+
+    .overlay2 {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    .banner h3 {
+        font-size: 18px;
+    }
+
+    .carousel-images a {
+        flex: 0 0 90%; /* Mostra quase uma imagem por vez */
+    }
+
+    .carousel-images a img {
+        max-height: 250px;
+    }
+
+    .carousel-images a p {
+        font-size: 12px;
+    }
+
+    #over {
+        font-size: 20px;
+    }
+
+    .settings-sidebar {
+        width: 95%;
+        right: -95%;
+    }
+
+    .chatbot-container {
+        width: 95%;
+        height: 70%;
+        top: 15%;
+        left: 2.5%;
+    }
+
+    .chatbot-header {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .chatbot-input input[type="text"] {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .chatbot-input button {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .chatbot-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    .footer-button {
+        width: 95%;
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .footer-link {
+        font-size: 0.9em;
+        margin: 5px 0;
+    }
+
+    footer p.copyright {
+        font-size: 0.8em;
+    }
+
+}
+
+@media (max-width: 400px) { /* Para telefones menores */
+    .logo h1 {
+        font-size: 20px;
+    }
+
+    .logo p {
+        font-size: 12px;
+    }
+
+    nav a {
+        font-size: 0.8em;
+        margin: 0 5px;
+    }
+
+    .buttons button {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+
+    .banner h3 {
+        font-size: 16px;
+    }
+    .overlay2 {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+
+    .carousel-images a {
+        flex: 0 0 100%; /* Mostra uma imagem por vez em telas bem pequenas */
+    }
+
+    .carousel-images a img {
+        max-height: 200px;
+    }
+
+    .carousel-images a p {
+        font-size: 10px;
+    }
+
+    #over {
+        font-size: 18px;
+    }
+
+    .footer-button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .footer-link {
+        font-size: 0.75em;
+    }
+
+    footer p.copyright {
+        font-size: 0.7em;
+    }
+
+    .settings-sidebar h3 {
+        font-size: 18px;
+    }
+
+    .setting label {
+        font-size: 14px;
+    }
+
+    .setting input,
+    .setting select,
+    .setting button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .chatbot-header h2 {
+        font-size: 16px;
+    }
+
+    .chatbot-header-button {
+        font-size: 20px;
+        margin-left: 5px;
+    }
+
+    .chatbot-messages {
+        font-size: 0.9em;
+    }
+
+    .chatbot-input input[type="text"] {
+        font-size: 10px;
+        padding: 5px;
+    }
+
+    .chatbot-input button {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+
+    .chatbot-toggle {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
 }

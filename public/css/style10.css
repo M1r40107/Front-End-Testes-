@@ -371,3 +371,40 @@ body.dark-theme footer {
     background-color: #222;
     color: #eee;
 }
+
+/* === Media Queries para Responsividade === */
+@media (max-width: 768px) {
+    .settings-sidebar h4 {
+        font-size: 1em;
+        padding-left: 10px;
+        border-left-width: 2px;
+        margin-top: 15px;
+        margin-bottom: 8px;
+    }
+
+    .settings-sidebar .news-sidebar-item {
+        padding: 8px 12px;
+        font-size: 0.85em;
+        margin-bottom: 6px;
+    }
+
+    .settings-sidebar .news-button-sidebar {
+        font-size: 0.85em;
+        padding: 8px 12px;
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .settings-sidebar h4 {
+        font-size: 0.95em;
+    }
+
+    .settings-sidebar .news-sidebar-item {
+        font-size: 0.8em;
+    }
+
+    .settings-sidebar .news-button-sidebar {
+        font-size: 0.8em;
+    }
+}

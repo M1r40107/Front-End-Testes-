@@ -22,66 +22,157 @@ body.dark-theme {
     color: #f5f5f5;
 }
 
-/* Página de login do administrador */
-.admin-login-page {
+#loginSection {
     max-width: 400px;
-    margin-left: auto;
-    margin-right: 20px;
+    margin: 100px auto; /* Centraliza vertical e horizontalmente */
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    color: #000000;
+    background-color: #f9f9f9; /* Um fundo claro para destacar */
+    color: #333; /* Cor do texto padrão */
 }
 
-.admin-login-page h2,
-.admin-login-page label {
-    color: #000000 !important;
+#loginSection h2 {
+    color: #333 !important; /* Cor do título */
+    text-align: center; /* Centraliza o título */
+    margin-bottom: 20px;
+}
+
+#loginSection label {
+    display: block; /* Faz o label ocupar a linha toda */
+    margin-bottom: 5px; /* Espaço abaixo do label */
+    color: #555; /* Cor do label */
+    font-weight: bold; /* Deixa o label em negrito */
+}
+
+#loginSection input[type="email"],
+#loginSection input[type="password"] {
+    width: calc(100% - 20px); /* Largura total menos o padding */
+    padding: 10px;
+    margin-bottom: 15px; /* Espaço abaixo do input */
+    border: 1px solid #ccc; /* Borda do input */
+    border-radius: 5px; /* Arredonda as bordas */
+    background-color: #fff; /* Fundo branco */
+    color: #333; /* Cor do texto dentro do input */
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+#loginSection button {
+    width: 100%; /* Largura total do botão */
+    padding: 10px 15px; /* Padding do botão */
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    border: none; /* Remove a borda */
+    border-radius: 5px; /* Arredonda as bordas */
+    cursor: pointer; /* Muda o cursor ao passar por cima */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: background-color 0.2s ease; /* Transição suave na cor */
+}
+
+/* -------------------------------------------------- */
+/* Estilos específicos para a seção de Login */
+/* -------------------------------------------------- */
+#loginSection {
+    max-width: 400px;
+    margin: 100px auto; /* Centraliza vertical e horizontalmente */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9; /* Um fundo claro para destacar */
+    color: #333; /* Cor do texto padrão */
+}
+
+#loginSection h2 {
+    color: #333 !important; /* Cor do título */
+    text-align: center; /* Centraliza o título */
+    margin-bottom: 20px;
+}
+
+#loginSection label {
+    display: block; /* Faz o label ocupar a linha toda */
+    margin-bottom: 5px; /* Espaço abaixo do label */
+    color: #555; /* Cor do label */
+    font-weight: bold; /* Deixa o label em negrito */
+}
+
+#loginSection input[type="email"],
+#loginSection input[type="password"] {
+    width: calc(100% - 20px); /* Largura total menos o padding */
+    padding: 10px;
+    margin-bottom: 15px; /* Espaço abaixo do input */
+    border: 1px solid #ccc; /* Borda do input */
+    border-radius: 5px; /* Arredonda as bordas */
+    background-color: #fff; /* Fundo branco */
+    color: #333; /* Cor do texto dentro do input */
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+#loginSection button {
+    width: 100%; /* Largura total do botão */
+    padding: 10px 15px; /* Padding do botão */
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    border: none; /* Remove a borda */
+    border-radius: 5px; /* Arredonda as bordas */
+    cursor: pointer; /* Muda o cursor ao passar por cima */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: background-color 0.2s ease; /* Transição suave na cor */
+}
+
+#loginSection button:hover {
+    background-color: #0056b3; /* Cor de fundo mais escura no hover */
+}
+
+#loginSection p a {
+    color: #007bff; /* Cor do link */
+    text-decoration: none; /* Remove o sublinhado padrão */
+}
+
+#loginSection p a:hover {
+    text-decoration: underline; /* Adiciona sublinhado no hover */
+}
+
+#loginSection #login-error {
+    color: red; /* Cor vermelha para erro */
+    margin-top: 10px; /* Espaço acima da mensagem */
 }
 
 .login-logo {
-    flex-shrink: 0;
-    width: 150px;
-    height: auto;
-    margin-right: 20px;
+    text-align: center; /* Centraliza o logo */
+    margin-bottom: 20px; /* Espaço abaixo do logo */
 }
 
 .login-logo img {
-    position: relative;
-    left: 785px;
-    top: 30px;
-    width: 350px;
-    height: auto;
-    display: block;
+    max-width: 200px; /* Largura máxima do logo */
+    height: auto; /* Altura automática */
 }
 
-.admin-login-page input {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 6px;
-    font-size: 15px;
-    width: 100%;
-    color: #000000;
+body.dark-theme #loginSection {
+    background-color: #2a2a2a;
+    color: #f5f5f5;
 }
 
-.admin-login-page .button {
-    width: 100%;
-    margin-top: 15px;
-}
-
-body.dark-theme #loginSection.login-container h2,
-body.dark-theme #loginSection.login-container label {
+body.dark-theme #loginSection h2,
+body.dark-theme #loginSection label,
+body.dark-theme #loginSection p,
+body.dark-theme #loginSection p a {
     color: #f5f5f5 !important;
 }
 
-body.dark-theme #loginSection.login-container input {
+body.dark-theme #loginSection input[type="email"],
+body.dark-theme #loginSection input[type="password"] {
     background-color: #444;
     color: #f5f5f5;
     border-color: #666;
 }
 
-body.dark-theme #loginSection.login-container {
-    background-color: #2a2a2a;
-    color: #f5f5f5;
+body.dark-theme #loginSection button {
+    background-color: #343a40;
+    color: #fff;
+}
+
+body.dark-theme #loginSection button:hover {
+    background-color: #1d2124;
 }
 
 /* Container */
@@ -622,5 +713,73 @@ body.dark-theme .footer {
 
     .news-actions {
         margin-top: 10px;
+    }
+
+    /* Estilos responsivos específicos para a seção de login */
+    #loginSection {
+        max-width: 95%; /* Ocupa mais largura em telas menores */
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 15px;
+    }
+
+    #loginSection h2 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+
+    #loginSection label {
+        font-size: 0.95em;
+    }
+
+    #loginSection input[type="email"],
+    #loginSection input[type="password"] {
+        font-size: 0.95em;
+        padding: 8px;
+        margin-bottom: 12px;
+    }
+
+    #loginSection button {
+        font-size: 1em;
+        padding: 10px 15px;
+    }
+
+    .login-logo img {
+        max-width: 120px;
+    }
+}
+
+/* Para telas menores que 600px (telefones menores) */
+@media (max-width: 600px) {
+    #loginSection {
+        max-width: 98%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+
+    #loginSection h2 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    #loginSection label {
+        font-size: 0.9em;
+    }
+
+    #loginSection input[type="email"],
+    #loginSection input[type="password"] {
+        font-size: 0.9em;
+        padding: 6px;
+        margin-bottom: 10px;
+    }
+
+    #loginSection button {
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+
+    .login-logo img {
+        max-width: 100px;
     }
 }
