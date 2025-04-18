@@ -444,6 +444,32 @@ body.dark-theme .setting button:hover {
     background-color: #45a049;
 }
 
+/* Estilos para o container do ícone de perfil no cabeçalho quando logado */
+.profile-icon#header-profile-icon {
+    position: relative;
+    display: flex; /* Garante que os itens internos (como o SVG) se alinhem */
+    align-items: center; /* Alinha verticalmente o ícone */
+    left: -10px; /* Adiciona uma margem à esquerda para afastá-lo da borda */
+}
+
+.profile-icon#header-profile-icon a {
+    display: flex; /* Garante que o link também se comporte como um flex container */
+    text-decoration: none;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente dentro do link */
+    align-items: center; /* Centraliza o conteúdo verticalmente dentro do link */
+}
+
+.profile-icon#header-profile-icon svg {
+    width: 30px;
+    height: 30px;
+    fill: white; /* Mantém a cor branca do ícone */
+}
+
+/* Para o tema escuro, se você quiser manter a cor */
+body.dark-theme .profile-icon#header-profile-icon svg {
+    fill: #e0e0e0;
+}
+
 .close-sidebar-button {
     position: absolute;
     top: 10px;
