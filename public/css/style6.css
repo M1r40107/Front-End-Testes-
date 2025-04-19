@@ -1,664 +1,148 @@
-/* === Estilos Globais Aprimorados === */
-:root {
-    /* Paleta Claro */
-    --bg-color-light: #f8f9fa;
-    --container-bg-light: #ffffff;
-    --text-color-light: #212529;
-    --muted-text-light: #6c757d;
-    --border-color-light: #dee2e6;
-    --accent-color-light: #0d6efd; /* Azul */
-    --accent-hover-light: #0b5ed7;
-    --success-color-light: #198754; /* Verde */
-    --success-hover-light: #157347;
-    --danger-color-light: #dc3545; /* Vermelho */
-    --danger-hover-light: #bb2d3b;
-    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --input-bg-light: #ffffff;
-    --input-focus-shadow-light: rgba(13, 110, 253, 0.25);
-    --edit-controls-bg-light: rgba(13, 110, 253, 0.05);
-    --hover-bg-light: rgba(0, 0, 0, 0.03); /* Fundo hover sutil */
-
-    /* Paleta Escuro */
-    --bg-color-dark: #1a202c;
-    --container-bg-dark: #2d3748;
-    --text-color-dark: #e2e8f0;
-    --muted-text-dark: #a0aec0;
-    --border-color-dark: #4a5568;
-    --accent-color-dark: #60a5fa; /* Azul claro */
-    --accent-hover-dark: #3b82f6;
-    --success-color-dark: #48bb78; /* Verde claro */
-    --success-hover-dark: #38a169;
-    --danger-color-dark: #f56565;  /* Vermelho claro */
-    --danger-hover-dark: #e53e3e;
-    --shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.3);
-    --input-bg-dark: #1a202c;
-    --input-focus-shadow-dark: rgba(96, 165, 250, 0.3);
-    --edit-controls-bg-dark: rgba(96, 165, 250, 0.1);
-    --hover-bg-dark: rgba(255, 255, 255, 0.05); /* Fundo hover sutil escuro */
-}
-
-/* === Estilos Base === */
+/* Estilos específicos para a página de Avaliação (Responsivo com Escala) */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-    margin: 0;
-    background-color: #78797a96;
-    color: var(--text-color-light);
-    line-height: 1.6;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 2vw; /* Margem relativa à largura da viewport */
+    font-size: 16px; /* Tamanho de fonte base */
 }
 
 .container {
-    max-width: 1024px;
-    margin: 40px auto;
-    padding: 35px 40px 40px 40px; /* Aumenta padding inferior */
-    background-color: var(--container-bg-light);
-    border-radius: 12px;
-    box-shadow: var(--shadow-light);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    position: relative; /* Necessário para posicionar botão de tema */
+    background-color: #fff;
+    padding: 3vw; /* Padding relativo à largura da viewport */
+    border-radius: 1vw; /* Borda arredondada relativa à largura da viewport */
+    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.1); /* Sombra relativa à largura da viewport */
+    max-width: 90vw; /* Largura máxima relativa à largura da viewport */
+    margin: 2vw auto; /* Margem automática com unidades relativas */
 }
 
-h2 {
-    color: var(--text-color-light);
-    font-weight: 600;
+h1 {
+    color: #333;
     text-align: center;
-    margin-top: 0;
-    margin-bottom: 35px; /* Aumentado */
-    letter-spacing: 0.5px;
-    transition: color 0.3s ease;
-}
-h2:not(:first-of-type) {
-    margin-top: 45px; /* Mais espaço antes do segundo H2 */
+    margin-bottom: 3vw; /* Margem inferior relativa à largura da viewport */
+    font-size: 2.5vw; /* Tamanho da fonte relativo à largura da viewport */
 }
 
-hr {
-    border: none;
-    height: 1px;
-    background-color: var(--border-color-light);
-    margin: 45px 0; /* Mais espaço */
-    transition: background-color 0.3s ease;
+.avaliacao-item {
+    margin-bottom: 3vw; /* Margem inferior relativa à largura da viewport */
 }
 
-/* === Estilos do Formulário de Adicionar Produto === */
-.product-form {
-    padding: 30px; /* Mais padding */
-    border: 1px solid var(--border-color-light);
-    border-radius: 8px;
-    margin-bottom: 45px;
-    background-color: var(--container-bg-light);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.product-form .form-group {
-    margin-bottom: 20px;
-}
-.product-form .form-group:last-of-type {
-     margin-bottom: 25px; /* Mais espaço antes do botão submit */
-}
-
-
-.product-form label {
+.avaliacao-item label {
     display: block;
-    font-weight: 500;
-    color: var(--muted-text-light);
-    margin-bottom: 8px;
-    font-size: 0.9em;
-    transition: color 0.3s ease;
+    font-weight: bold;
+    margin-bottom: 0.5vw; /* Margem inferior relativa à largura da viewport */
+    font-size: 1.2vw; /* Tamanho da fonte relativo à largura da viewport */
 }
 
-.product-form input[type="text"],
-.product-form input[type="number"],
-.product-form textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid var(--border-color-light);
-    border-radius: 6px;
-    font-size: 1em;
-    background-color: var(--input-bg-light);
-    color: var(--text-color-light);
-    box-sizing: border-box;
-    transition: border-color 0.2s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.2s ease;
+.estrelas {
+    display: flex;
+    flex-direction: row-reverse; /* Para ordenar as estrelas da direita para a esquerda */
+    margin-bottom: 1.5vw; /* Margem inferior relativa à largura da viewport */
+    justify-content: center; /* Centralizando as estrelas */
 }
 
-.product-form textarea {
-    min-height: 80px;
-    resize: vertical;
+.estrelas input[type="radio"] {
+    display: none; /* Esconde os botões de rádio */
 }
 
-.product-form input[type="text"]:focus,
-.product-form input[type="number"]:focus,
-.product-form textarea:focus {
-    border-color: var(--accent-color-light);
-    outline: none;
-    box-shadow: 0 0 0 3px var(--input-focus-shadow-light);
-}
-
-/* === Botão Genérico e Variações === */
-.button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 9px 18px;
-    border-radius: 6px;
-    border: 1px solid transparent;
-    font-size: 0.90em;
-    font-weight: 500;
+.estrelas label {
+    position: relative;
+    width: 6vw; /* Largura relativa à largura da viewport */
+    height: 6vw; /* Altura relativa à largura da viewport (para manter a proporção) */
+    background: none;
     cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease, transform 0.1s ease;
-    user-select: none;
-}
-.button:focus-visible {
-    outline: 2px solid var(--accent-color-light);
-    outline-offset: 2px;
-}
-.button:not(.edit-button):not(.theme-toggle-button):hover { /* Hover padrão (exceto outline e tema) */
-    filter: brightness(90%);
-}
-.button:active {
-    filter: brightness(85%);
-    transform: translateY(1px);
+    font-size: 0; /* Esconde o texto padrão da label */
 }
 
-/* Botão Principal (Adicionar Produto, Acessar Loja) */
-.button.submit-button,
-.button.temp-button {
-    background-color: var(--accent-color-light);
-    color: #fff;
-    border-color: var(--accent-color-light);
-}
-.button.submit-button:hover,
-.button.temp-button:hover {
-    background-color: var(--accent-hover-light);
-    border-color: var(--accent-hover-light);
-    filter: none;
-}
-/* Botão submit do form */
-.product-form .button.submit-button {
-    width: 100%;
-    padding: 12px 18px;
-    font-size: 1em;
-    margin-top: 10px;
-}
-
-
-/* Botão de Edição (Outline) */
-.button.edit-button {
-    background-color: transparent;
-    border-color: var(--accent-color-light);
-    color: var(--accent-color-light);
-    padding: 8px 16px;
-}
-.button.edit-button:hover {
-    background-color: var(--accent-color-light);
-    color: var(--container-bg-light);
-    filter: none;
-}
-
-/* Botão Salvar (Sucesso) */
-.button.save {
-    background-color: var(--success-color-light);
-    color: #fff;
-    border-color: var(--success-color-light);
-}
-.button.save:hover {
-    background-color: var(--success-hover-light);
-    border-color: var(--success-hover-light);
-    filter: none;
-}
-
-/* Botão Cancelar e Excluir (Perigo) */
-.button.cancel,
-.button.danger,
-.button.delete-button {
-    background-color: var(--danger-color-light);
-    color: #fff;
-    border-color: var(--danger-color-light);
-}
-.button.cancel:hover,
-.button.danger:hover,
-.button.delete-button:hover {
-    background-color: var(--danger-hover-light);
-    border-color: var(--danger-hover-light);
-    filter: none;
-}
-
-/* Ajuste padding dos botões menores */
-.button.delete-button,
-.button.cancel {
-     padding: 8px 16px;
-}
-
-
-/* Botão Acessar Loja (temp-button) */
-.button.temp-button {
-    display: block;
-    width: fit-content;
-    margin: 40px auto 0 auto;
-}
-
-/* === Lista de Produtos === */
-.product-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-/* Mensagem quando a lista está vazia */
-.no-products-message {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--muted-text-light);
-    font-style: italic;
-    border: 1px dashed var(--border-color-light);
-    border-radius: 8px;
-    margin-top: 20px;
-    transition: color 0.3s ease, border-color 0.3s ease;
-}
-
-.product-item {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    border-bottom: 1px solid var(--border-color-light);
-    padding: 20px 10px;
-    transition: background-color 0.2s ease, border-color 0.3s ease;
-}
-.product-item:last-child {
-    border-bottom: none;
-}
-.product-item:hover {
-     background-color: var(--hover-bg-light);
-}
-
-.product-info {
-    flex-grow: 1;
-    margin-right: 20px;
-    flex-basis: calc(55% - 20px);
-    min-width: 200px;
-}
-
-.product-name {
-    font-size: 1.2em;
-    font-weight: 600;
-    color: var(--text-color-light);
-    margin-bottom: 5px;
-    transition: color 0.3s ease;
-}
-
-.product-details {
-    font-size: 0.9em;
-    color: var(--muted-text-light);
-    margin-bottom: 0;
-    transition: color 0.3s ease;
-}
-
-/* Ações do Produto (Visualização) - Com estrutura .stats e .action-buttons */
-.product-actions {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 15px;
-    align-items: center;
-    flex-grow: 1; /* Ocupa espaço restante */
-    flex-basis: 40%; /* Base inicial */
-    min-width: 290px; /* Aumentado ligeiramente */
-    justify-content: flex-end; /* Alinha o conteúdo interno (stats e action-buttons) */
-}
-
-.product-actions .stats {
-    display: flex;
-    gap: 18px; /* Aumenta espaço entre valor e qtd */
-    align-items: center;
-    margin-right: auto; /* Empurra botões para direita */
-    flex-shrink: 0;
-    white-space: nowrap; /* Evita quebra nos stats */
-    text-align: left; /* Alinha texto dos stats à esquerda */
-}
-
-.product-value,
-.product-quantity {
-    font-size: 1em;
-    font-weight: 500;
-}
-
-.product-value {
-    color: var(--success-color-light);
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.product-quantity {
-    color: var(--muted-text-light);
-    transition: color 0.3s ease;
-}
-
-.product-actions .action-buttons {
-     display: flex;
-     gap: 10px;
-     flex-shrink: 0;
-}
-
-/* === Controles de Edição (Dentro do Item) === */
-.edit-controls {
-    display: none;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px 15px;
-    padding: 20px;
-    margin-top: 20px;
-    background-color: var(--edit-controls-bg-light);
-    border-radius: 8px;
-    border: 1px dashed var(--border-color-light);
-    width: 100%;
-    box-sizing: border-box;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-.edit-controls.active {
-    display: flex;
-}
-
-.edit-control-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    flex-grow: 1;
-    min-width: 120px;
-}
-
-.edit-controls label {
-    font-size: 0.85em;
-    color: var(--muted-text-light);
-    font-weight: 500;
-    margin-bottom: 0;
-}
-
-.edit-controls input[type="text"], /* Mantido se precisar de texto */
-.edit-controls input[type="number"] {
-    padding: 10px 12px;
-    border: 1px solid var(--border-color-light);
-    border-radius: 6px;
-    font-size: 0.95em;
-    background-color: var(--input-bg-light);
-    color: var(--text-color-light);
-    box-sizing: border-box;
-    transition: border-color 0.2s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.2s ease;
-}
-.edit-controls input[type="text"]:focus,
-.edit-controls input[type="number"]:focus {
-    border-color: var(--accent-color-light);
-    outline: none;
-    box-shadow: 0 0 0 3px var(--input-focus-shadow-light);
-}
-
-.edit-action-buttons {
-    display: flex;
-    gap: 10px;
-    align-items: flex-end;
-    flex-basis: 100%;
-    justify-content: flex-end;
-    margin-top: 10px;
-}
-
-/* === Estilos do Botão de Tema === */
-.theme-toggle-button {
+.estrelas label:before {
+    content: '\2605'; /* Caractere Unicode para estrela */
     position: absolute;
-    top: 20px;
-    right: 25px;
-    padding: 6px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 1.4em;
-    line-height: 1;
-    background-color: var(--container-bg-light);
-    border: 1px solid var(--border-color-light);
-    color: var(--text-color-light);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-.theme-toggle-button:hover {
-    background-color: var(--hover-bg-light); /* Usa variável de hover */
-    border-color: var(--border-color-light); /* Mantém borda */
-    filter: none;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-}
-.theme-toggle-button:active {
-     transform: translateY(0px) scale(0.95);
-     filter: brightness(95%);
-}
-.theme-toggle-button:focus-visible {
-    outline: 2px solid var(--accent-color-light);
-    outline-offset: 1px;
+    top: 0;
+    left: 0;
+    font-size: 4vw; /* Tamanho da fonte relativo à largura da viewport */
+    color: #ddd;
+    transition: color 0.2s;
+    display: inline-block;
 }
 
+.estrelas input[type="radio"]:checked ~ label:before,
+.estrelas label:hover:before {
+    color: #ffc107;
+}
 
-/* === Media Queries (Ajustes Responsivos) === */
-@media (min-width: 768px) {
-    .edit-action-buttons {
-        flex-basis: auto;
-        margin-top: 0;
+textarea {
+    width: 100%;
+    padding: 1.5vw; /* Padding relativo à largura da viewport */
+    border: 0.1vw solid #ccc; /* Borda relativa à largura da viewport */
+    border-radius: 0.5vw; /* Borda arredondada relativa à largura da viewport */
+    box-sizing: border-box;
+    margin-top: 0.5vw; /* Margem superior relativa à largura da viewport */
+    font-family: inherit;
+    font-size: 1vw; /* Tamanho da fonte relativo à largura da viewport */
+}
+
+button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 2vw 4vw; /* Padding relativo à largura da viewport */
+    border: none;
+    border-radius: 0.5vw; /* Borda arredondada relativa à largura da viewport */
+    cursor: pointer;
+    font-size: 1.2vw; /* Tamanho da fonte relativo à largura da viewport */
+    transition: background-color 0.3s ease;
+    width: 80vw; /* Largura relativa à largura da viewport */
+    max-width: 400px; /* Largura máxima em pixels para telas maiores */
+    margin: 2vw auto; /* Margem automática com unidades relativas */
+    display: block;
+}
+
+button[type="submit"]:hover {
+    background-color: #1e7e34;
+}
+
+/* Estilos para tema escuro */
+body.dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-theme .container {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme h1, body.dark-theme label {
+    color: #e0e0e0;
+}
+
+body.dark-theme textarea {
+    background-color: #2b2b2b;
+    color: #e0e0e0;
+    border-color: #444;
+}
+
+body.dark-theme .estrelas label:before {
+    color: #777;
+}
+
+body.dark-theme .estrelas input[type="radio"]:checked ~ label:before,
+body.dark-theme .estrelas label:hover:before {
+    color: #ffc107;
+}
+
+body.dark-theme button[type="submit"] {
+    background-color: #1e7e34;
+    color: white;
+}
+
+body.dark-theme button[type="submit"]:hover {
+    background-color: #155724;
+}
+
+/* Ajuste fino para telas muito pequenas (opcional) */
+@media (max-width: 320px) {
+    body {
+        font-size: 14px;
     }
-    .edit-control-group {
-        flex-grow: 0; /* Não estica tanto */
-        min-width: 150px; /* Um pouco mais de espaço */
-    }
-}
-
-@media (max-width: 700px) {
-    .container {
-        margin: 20px 10px;
-        padding: 20px;
-        padding-top: 70px; /* Mais espaço para botão de tema */
-    }
-    h2 {
-        font-size: 1.5em;
-    }
-    .product-form {
-        padding: 20px 15px; /* Ajusta padding */
-    }
-     /* Ajuste para tema em telas pequenas */
-     .theme-toggle-button {
-         top: 15px;
-         right: 15px;
-         width: 38px;
-         height: 38px;
-         font-size: 1.3em;
-     }
-
-    .product-item {
-        padding: 15px 5px;
-        align-items: flex-start; /* Alinha itens ao topo */
-    }
-    .product-info {
-         flex-basis: 100%;
-         margin-right: 0;
-         margin-bottom: 15px;
-    }
-    .product-actions {
-        flex-basis: 100%;
-        justify-content: space-between;
-        min-width: 0;
-        gap: 10px; /* Reduz gap geral */
-    }
-     .product-actions .stats {
-         margin-right: 0;
-         gap: 10px;
-         flex-grow: 1; /* Permite crescer um pouco */
-     }
-     .product-actions .action-buttons {
-          gap: 8px;
-          flex-shrink: 0; /* Garante que botões não encolham demais */
-     }
-    .product-actions .button {
-        padding: 6px 10px;
-        font-size: 0.85em;
-    }
-
-    .edit-controls {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 15px;
-    }
-    .edit-action-buttons {
-        justify-content: center;
-        margin-top: 15px; /* Mais espaço */
-    }
-     .button.temp-button {
-         width: 100%;
-         text-align: center;
-         margin-top: 30px;
-     }
-}
-
-
-/* === Tema Escuro === */
-body.dark-mode {
-    background-color: var(--bg-color-dark);
-    color: var(--text-color-dark);
-}
-
-body.dark-mode .container {
-    background-color: var(--container-bg-dark);
-    box-shadow: var(--shadow-dark);
-}
-
-body.dark-mode h2 {
-    color: var(--text-color-dark);
-}
-
-body.dark-mode hr {
-    background-color: var(--border-color-dark);
-}
-
-/* Form Escuro */
-body.dark-mode .product-form {
-     background-color: var(--container-bg-dark);
-     border-color: var(--border-color-dark);
-}
-
-body.dark-mode .product-form input[type="text"],
-body.dark-mode .product-form input[type="number"],
-body.dark-mode .product-form textarea,
-body.dark-mode .edit-controls input[type="text"],
-body.dark-mode .edit-controls input[type="number"] {
-    background-color: var(--input-bg-dark);
-    color: var(--text-color-dark);
-    border-color: var(--border-color-dark);
-}
-body.dark-mode .product-form input[type="text"]:focus,
-body.dark-mode .product-form input[type="number"]:focus,
-body.dark-mode .product-form textarea:focus,
-body.dark-mode .edit-controls input[type="text"]:focus,
-body.dark-mode .edit-controls input[type="number"]:focus {
-    border-color: var(--accent-color-dark);
-    box-shadow: 0 0 0 3px var(--input-focus-shadow-dark);
-}
-
-body.dark-mode .product-form label {
-     color: var(--muted-text-dark);
-}
-
-/* Lista Escura */
-body.dark-mode .no-products-message {
-     color: var(--muted-text-dark);
-     border-color: var(--border-color-dark);
-}
-
-body.dark-mode .product-item {
-    border-bottom-color: var(--border-color-dark);
-}
-body.dark-mode .product-item:hover {
-     background-color: var(--hover-bg-dark);
-}
-
-body.dark-mode .product-name {
-    color: var(--text-color-dark);
-}
-
-body.dark-mode .product-details {
-    color: var(--muted-text-dark);
-}
-
-body.dark-mode .product-value {
-    color: var(--success-color-dark);
-}
-
-body.dark-mode .product-quantity {
-    color: var(--muted-text-dark);
-}
-
-/* Botões Escuros */
-body.dark-mode .button:focus-visible {
-    outline-color: var(--accent-color-dark);
-}
-
-body.dark-mode .button.submit-button,
-body.dark-mode .button.temp-button {
-    background-color: var(--accent-color-dark);
-    border-color: var(--accent-color-dark);
-    color: #1a202c;
-}
-body.dark-mode .button.submit-button:hover,
-body.dark-mode .button.temp-button:hover {
-    background-color: var(--accent-hover-dark);
-    border-color: var(--accent-hover-dark);
-}
-
-body.dark-mode .button.edit-button {
-    border-color: var(--accent-color-dark);
-    color: var(--accent-color-dark);
-}
-body.dark-mode .button.edit-button:hover {
-    background-color: var(--accent-color-dark);
-    color: var(--container-bg-dark);
-}
-
-body.dark-mode .button.save {
-    background-color: var(--success-color-dark);
-    border-color: var(--success-color-dark);
-    color: #1a202c;
-}
-body.dark-mode .button.save:hover {
-    background-color: var(--success-hover-dark);
-    border-color: var(--success-hover-dark);
-}
-
-body.dark-mode .button.cancel,
-body.dark-mode .button.danger,
-body.dark-mode .button.delete-button {
-    background-color: var(--danger-color-dark);
-    border-color: var(--danger-color-dark);
-    color: #1a202c;
-}
-body.dark-mode .button.cancel:hover,
-body.dark-mode .button.danger:hover,
-body.dark-mode .button.delete-button:hover {
-    background-color: var(--danger-hover-dark);
-    border-color: var(--danger-hover-dark);
-}
-
-/* Controles de Edição Escuro */
-body.dark-mode .edit-controls {
-    background-color: var(--edit-controls-bg-dark);
-    border-color: var(--border-color-dark);
-}
-
-body.dark-mode .edit-controls label {
-    color: var(--muted-text-dark);
-}
-
-/* Botão Tema Escuro */
-body.dark-mode .theme-toggle-button {
-    background-color: var(--container-bg-dark);
-    border-color: var(--border-color-dark);
-    color: var(--text-color-dark);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-body.dark-mode .theme-toggle-button:hover {
-     background-color: var(--border-color-dark); /* Fundo mais escuro no hover */
-     box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-}
-body.dark-mode .theme-toggle-button:focus-visible {
-    outline-color: var(--accent-color-dark);
 }
