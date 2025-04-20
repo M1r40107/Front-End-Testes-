@@ -1,65 +1,85 @@
-/* Estilos específicos para a página de Avaliação (Responsivo com Escala) */
+/* Estilos específicos para a página de Avaliação (Responsivo com Layout em Boxes - Refinado) */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f4f4;
     color: #333;
-    margin: 2vw; /* Margem relativa à largura da viewport */
-    font-size: 16px; /* Tamanho de fonte base */
+    margin: 0;
+    font-size: 16px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3vw;
+    box-sizing: border-box;
 }
 
 .container {
-    background-color: #fff;
-    padding: 3vw; /* Padding relativo à largura da viewport */
-    border-radius: 1vw; /* Borda arredondada relativa à largura da viewport */
-    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.1); /* Sombra relativa à largura da viewport */
-    max-width: 90vw; /* Largura máxima relativa à largura da viewport */
-    margin: 2vw auto; /* Margem automática com unidades relativas */
+    max-width: 90vw;
+    /* background-color: #fff; REMOVI ESSA LINHA */
+    border-radius: 1.5vw;
+    box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.15);
+    padding: 3vw;
+    margin-top: 3vw;
+    margin-bottom: 12vw; /* Aumentei para evitar sobreposição do footer em telas menores */
+    box-sizing: border-box;
 }
 
 h1 {
     color: #333;
     text-align: center;
-    margin-bottom: 3vw; /* Margem inferior relativa à largura da viewport */
-    font-size: 2.5vw; /* Tamanho da fonte relativo à largura da viewport */
+    margin-bottom: 2.5vw;
+    font-size: 2.8vw;
+}
+
+#lista-avaliacoes-usuario {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    margin-bottom: 3vw; /* Aumentei um pouco */
+    justify-content: center; /* Centralizar em telas menores */
 }
 
 .avaliacao-item {
-    margin-bottom: 3vw; /* Margem inferior relativa à largura da viewport */
+    background-color: #f9f9f9;
+    border-radius: 1vw;
+    box-shadow: 0 0.3vw 0.6vw rgba(0, 0, 0, 0.08);
+    padding: 2vw;
+    flex: 1 1 auto;
+    min-width: 80vw; /* Para telas pequenas, ocupa mais largura */
+    box-sizing: border-box;
+    border: 0.05vw solid #eee;
 }
 
 .avaliacao-item label {
     display: block;
     font-weight: bold;
-    margin-bottom: 0.5vw; /* Margem inferior relativa à largura da viewport */
-    font-size: 1.2vw; /* Tamanho da fonte relativo à largura da viewport */
+    margin-bottom: 0.8vw;
+    font-size: 1.1vw;
+    color: #555;
 }
 
 .estrelas {
     display: flex;
-    flex-direction: row-reverse; /* Para ordenar as estrelas da direita para a esquerda */
-    margin-bottom: 1.5vw; /* Margem inferior relativa à largura da viewport */
-    justify-content: center; /* Centralizando as estrelas */
-}
-
-.estrelas input[type="radio"] {
-    display: none; /* Esconde os botões de rádio */
+    flex-direction: row-reverse;
+    margin-bottom: 1.2vw;
+    justify-content: center;
 }
 
 .estrelas label {
     position: relative;
-    width: 6vw; /* Largura relativa à largura da viewport */
-    height: 6vw; /* Altura relativa à largura da viewport (para manter a proporção) */
+    width: 4vw;
+    height: 4vw;
     background: none;
     cursor: pointer;
-    font-size: 0; /* Esconde o texto padrão da label */
+    font-size: 0;
 }
 
 .estrelas label:before {
-    content: '\2605'; /* Caractere Unicode para estrela */
+    content: '\2605';
     position: absolute;
     top: 0;
     left: 0;
-    font-size: 4vw; /* Tamanho da fonte relativo à largura da viewport */
+    font-size: 3vw;
     color: #ddd;
     transition: color 0.2s;
     display: inline-block;
@@ -70,37 +90,38 @@ h1 {
     color: #ffc107;
 }
 
-textarea {
+.avaliacao-item textarea {
     width: 100%;
-    padding: 1.5vw; /* Padding relativo à largura da viewport */
-    border: 0.1vw solid #ccc; /* Borda relativa à largura da viewport */
-    border-radius: 0.5vw; /* Borda arredondada relativa à largura da viewport */
+    padding: 1vw;
+    border: 0.1vw solid #ccc;
+    border-radius: 0.5vw;
     box-sizing: border-box;
-    margin-top: 0.5vw; /* Margem superior relativa à largura da viewport */
+    margin-top: 0.8vw;
     font-family: inherit;
-    font-size: 1vw; /* Tamanho da fonte relativo à largura da viewport */
+    font-size: 0.9vw;
+    min-height: 80px;
+    color: #555;
 }
 
-button[type="submit"] {
+.avaliacao-item button[type="submit"] {
     background-color: #28a745;
     color: white;
-    padding: 2vw 4vw; /* Padding relativo à largura da viewport */
+    padding: 1vw 2vw;
     border: none;
-    border-radius: 0.5vw; /* Borda arredondada relativa à largura da viewport */
+    border-radius: 0.5vw;
     cursor: pointer;
-    font-size: 1.2vw; /* Tamanho da fonte relativo à largura da viewport */
+    font-size: 1vw;
     transition: background-color 0.3s ease;
-    width: 80vw; /* Largura relativa à largura da viewport */
-    max-width: 400px; /* Largura máxima em pixels para telas maiores */
-    margin: 2vw auto; /* Margem automática com unidades relativas */
-    display: block;
-}
+    width: 100%;
+    margin-top: 1.5vw;
+    box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.1); /* Sombra no botão */
 
-button[type="submit"]:hover {
+}
+.avaliacao-item button[type="submit"]:hover {
     background-color: #1e7e34;
 }
 
-/* Estilos para tema escuro */
+/* Estilos para tema escuro (adapte conforme necessário) */
 body.dark-theme {
     background-color: #121212;
     color: #e0e0e0;
@@ -108,18 +129,28 @@ body.dark-theme {
 
 body.dark-theme .container {
     background-color: #1e1e1e;
-    color: #e0e0e0;
-    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0.5vw 1vw rgba(255, 255, 255, 0.05);
 }
 
-body.dark-theme h1, body.dark-theme label {
+body.dark-theme h1 {
     color: #e0e0e0;
 }
 
-body.dark-theme textarea {
-    background-color: #2b2b2b;
-    color: #e0e0e0;
-    border-color: #444;
+body.dark-theme .avaliacao-item {
+    background-color: #252525;
+    box-shadow: 0 0.3vw 0.6vw rgba(255, 255, 255, 0.04);
+    border-color: #333;
+    color: #ccc;
+}
+
+body.dark-theme .avaliacao-item label {
+    color: #ccc;
+}
+
+body.dark-theme .avaliacao-item textarea {
+    background-color: #333;
+    color: #eee;
+    border-color: #555;
 }
 
 body.dark-theme .estrelas label:before {
@@ -131,18 +162,197 @@ body.dark-theme .estrelas label:hover:before {
     color: #ffc107;
 }
 
-body.dark-theme button[type="submit"] {
+body.dark-theme .avaliacao-item button[type="submit"] {
     background-color: #1e7e34;
     color: white;
+    box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.2);
 }
 
-body.dark-theme button[type="submit"]:hover {
+body.dark-theme .avaliacao-item button[type="submit"]:hover {
     background-color: #155724;
+
+}
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1vw 0; /* Ajuste este valor para controlar a altura vertical da box preta */
 }
 
-/* Ajuste fino para telas muito pequenas (opcional) */
-@media (max-width: 320px) {
+footer button {
+    background-color: #ffa500;
+    color: white;
+    border: none;
+    padding: 0.8vw 1.5vw; /* Restaurei o padding do botão */
+    border-radius: 0.3vw;
+    cursor: pointer;
+    font-size: 0.9em; /* Restaurei a fonte do botão */
+    text-decoration: none;
+    margin-bottom: 0.3vw; /* Restaurei a margem inferior do botão */
+    width: fit-content;
+}
+
+footer .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.3vw; /* Restaurei a margem inferior do conteúdo */
+}
+
+footer .footer-content p {
+    margin: 0.2vw 0;
+    font-size: 0.8em; /* Restaurei a fonte do texto */
+}
+
+footer .footer-content p#system-version {
+    color: #777;
+    font-size: 0.7em; /* Restaurei a fonte da versão */
+}
+
+/* Para telas maiores (ajustes finos se necessário) */
+@media (max-width: 768px) {
     body {
-        font-size: 14px;
+        padding: 4vw;
+    }
+
+    .container {
+        border-radius: 2vw;
+        padding: 4vw;
+        margin-top: 4vw;
+    }
+
+    h1 {
+        font-size: 4vw;
+        margin-bottom: 3.5vw;
+    }
+
+    #lista-avaliacoes-usuario {
+        gap: 3vw;
+        margin-bottom: 4vw;
+    }
+
+    .avaliacao-item {
+        border-radius: 1.5vw;
+        padding: 3vw;
+        min-width: 95vw;
+    }
+
+    .avaliacao-item label {
+        font-size: 1.3vw;
+        margin-bottom: 1vw;
+    }
+
+    .estrelas label {
+        width: 5vw;
+        height: 5vw;
+    }
+
+    .estrelas label:before {
+        font-size: 4vw;
+    }
+
+    .avaliacao-item textarea {
+        font-size: 1.1vw;
+        min-height: 100px;
+        padding: 1.2vw;
+        border-radius: 0.8vw;
+    }
+
+    .avaliacao-item button[type="submit"] {
+        font-size: 1.2vw;
+        padding: 1.2vw 2.5vw;
+        border-radius: 0.8vw;
+        margin-top: 2vw;
+    }
+
+    footer {
+        padding: 1vw 0; /* Mantenho o padding vertical para controlar a altura */
+    }
+
+    footer button {
+        font-size: 1.2em;
+        padding: 1.5vw 3vw;
+        border-radius: 0.8vw;
+        margin-bottom: 1.2vw;
+    }
+
+    footer .footer-content p {
+        font-size: 1em;
+    }
+
+    footer .footer-content p#system-version {
+        font-size: 0.9em;
+    }
+}
+
+/* Para telas ainda menores */
+@media (max-width: 360px) {
+    body {
+        padding: 5vw;
+    }
+
+    .container {
+        border-radius: 2.5vw;
+        padding: 5vw;
+        margin-top: 5vw;
+        margin-bottom: 16vw;
+    }
+
+    h1 {
+        font-size: 5.5vw;
+        margin-bottom: 4vw;
+    }
+
+    .avaliacao-item label {
+        font-size: 1.5vw;
+    }
+
+    .estrelas label {
+        width: 6vw;
+        height: 6vw;
+    }
+
+    .estrelas label:before {
+        font-size: 5vw;
+    }
+
+    .avaliacao-item textarea {
+        font-size: 1.3vw;
+        min-height: 120px;
+    }
+
+    .avaliacao-item button[type="submit"] {
+        font-size: 1.4vw;
+        padding: 1.5vw 3vw;
+        border-radius: 1vw;
+        margin-top: 2.5vw;
+    }
+
+    footer {
+        padding: 1.5vw 0; /* Mantenho o padding vertical */
+    }
+
+    footer button {
+        font-size: 1.3em;
+        padding: 2vw 4vw;
+        border-radius: 1vw;
+        margin-bottom: 1.5vw;
+    }
+
+    footer .footer-content p {
+        font-size: 1.2em;
+    }
+
+    footer .footer-content p#system-version {
+        font-size: 1.1em;
     }
 }

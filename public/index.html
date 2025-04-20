@@ -50,6 +50,7 @@
                 <button id="logout-button">Logout</button>
             </div>
 
+            <a href="destaques.html" class="news-button-sidebar">Destaques/ Novos Produtos/ Ofertas</a>
             <a href="noticias.html" class="news-button-sidebar">Ver Novas Notícias</a>
 
             <button class="close-sidebar-button" aria-label="Fechar Configurações">&times;</button>
@@ -294,10 +295,10 @@
                     sidebarProfileIcon.style.display = isLoggedIn ? 'flex' : 'none';
                 }
                 if (favoritosSettingSidebar) {
-                    favoritosSettingSidebar.style.display = isLoggedIn ? 'block' : 'none'; // Mostra o botão de histórico se logado
+                    favoritosSettingSidebar.style.display = isLoggedIn ? 'block' : 'none'; 
                 }
                 if (avaliacaoSettingSidebar) {
-                    avaliacaoSettingSidebar.style.display = isLoggedIn ? 'block' : 'none'; // Mostra o botão de histórico se logado
+                    avaliacaoSettingSidebar.style.display = isLoggedIn ? 'block' : 'none'; 
                 }
                 if (logoutSetting) {
                     logoutSetting.style.display = isLoggedIn ? 'block' : 'none';
