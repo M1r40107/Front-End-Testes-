@@ -407,3 +407,20 @@ body.dark-mode .observacao-checkout {
         min-width: auto;
     }
 }
+.endereco-entrega {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.endereco-entrega label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#endereco-input {
+    padding: 8px;
+    resize: vertical;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

@@ -34,6 +34,10 @@
                 <span>Total:</span>
                 <span class="valor-total">R$ 0,00</span>
             </div>
+            <div class="endereco-entrega">
+                <label for="endereco-input">Endereço para Entrega:</label>
+                <textarea id="endereco-input" rows="3" placeholder="Rua Exemplo, 123 - Bairro - Cidade/Estado"></textarea>
+            </div>
             <button class="button checkout-button" disabled>
                 <i class="fas fa-check"></i> Finalizar Compra
             </button>
@@ -160,6 +164,13 @@
             });
 
             renderizarCarrinho();
+
+            const enderecoInput = document.getElementById('endereco-input');
+            enderecoInput.value = localStorage.getItem('enderecoEntrega') || '';
+            
+            enderecoInput.addEventListener('input', () => {
+                localStorage.setItem('enderecoEntrega', enderecoInput.value);
+            });
         });
     </script>
    <footer>
