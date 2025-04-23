@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento</title>
+    <link rel="stylesheet" href="css/style14.css">
+    <link rel="stylesheet" href="css/style5.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <a href="carrinho.html" class="button back-button-fixed">
+        <i class="fas fa-arrow-left"></i> Voltar para o Carrinho
+    </a>
+    <div class="container-pagamento">
+        <h1>Escolha a forma de pagamento</h1>
+
+        <div class="opcoes-pagamento">
+            <button id="opcao-credito" class="opcao-botao">Cartão de Crédito</button>
+            <button id="opcao-debito" class="opcao-botao">Cartão de Débito</button>
+            <button id="opcao-pix" class="opcao-botao">Pix</button>
+        </div>
+
+        <div id="form-cartao" class="formulario-pagamento" style="display: none;">
+            <h2>Dados do Cartão</h2>
+            <form id="form-dados-cartao">
+                <div class="campo-formulario">
+                    <label for="numero-cartao">Número do Cartão:</label>
+                    <input type="text" id="numero-cartao" name="numero-cartao" placeholder="0000 0000 0000 0000" required>
+                </div>
+                <div class="campo-formulario">
+                    <label for="nome-titular">Nome do Titular:</label>
+                    <input type="text" id="nome-titular" name="nome-titular" placeholder="Nome completo" required>
+                </div>
+                <div class="campo-formulario linha-dois-campos">
+                    <div class="metade-campo">
+                        <label for="data-validade">Validade:</label>
+                        <input type="text" id="data-validade" name="data-validade" placeholder="MM/AA" required>
+                    </div>
+                    <div class="metade-campo">
+                        <label for="cvv">CVV:</label>
+                        <input type="text" id="cvv" name="cvv" placeholder="XXX" required>
+                    </div>
+                </div>
+                <button type="submit" class="botao-pagar">Pagar com Cartão</button>
+                <p class="aviso-seguranca">Seus dados serão enviados de forma segura (simulação).</p>
+            </form>
+        </div>
+
+        <div id="info-pix" class="info-pagamento" style="display: none;">
+            <h2>Pagar com Pix</h2>
+            <p>Ao escolher Pix, você será direcionado para gerar um código ou utilizar o QR Code para efetuar o pagamento.</p>
+            <button class="botao-pagar">Gerar Código Pix</button>
+        </div>
+    </div>
+
+    <footer>
+        <button onclick="window.location.href='index.html'">Voltar à Tela Inicial</button>
+        <div class="footer-content">
+            <p>&copy; 2025 Byte Bros. Todos os direitos reservados.</p>
+            <p id="system-version"></p>
+        </div>
+    </footer>
+
+    <script src="js/version.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const opcaoCreditoBotao = document.getElementById('opcao-credito');
+            const opcaoDebitoBotao = document.getElementById('opcao-debito');
+            const opcaoPixBotao = document.getElementById('opcao-pix');
+            const formCartao = document.getElementById('form-cartao');
+            const infoPix = document.getElementById('info-pix');
+            const formDadosCartao = document.getElementById('form-dados-cartao');
+            const botoesOpcao = document.querySelectorAll('.opcao-botao');
+
+            function deselecionarTodosBotoes() {
+                botoesOpcao.forEach(botao => {
+                    botao.classList.remove('selecionado');
+                });
+            }
+
+            opcaoCreditoBotao.addEventListener('click', () => {
+                deselecionarTodosBotoes();
+                opcaoCreditoBotao.classList.add('selecionado');
+                formCartao.style.display = 'block';
+                infoPix.style.display = 'none';
+            });
+
+            opcaoDebitoBotao.addEventListener('click', () => {
+                deselecionarTodosBotoes();
+                opcaoDebitoBotao.classList.add('selecionado');
+                formCartao.style.display = 'block';
+                infoPix.style.display = 'none';
+            });
+
+            opcaoPixBotao.addEventListener('click', () => {
+                deselecionarTodosBotoes();
+                opcaoPixBotao.classList.add('selecionado');
+                formCartao.style.display = 'none';
+                infoPix.style.display = 'block';
+            });
+
+            formDadosCartao.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const numeroCartao = document.getElementById('numero-cartao').value;
+                const nomeTitular = document.getElementById('nome-titular').value;
+                const dataValidade = document.getElementById('data-validade').value;
+                const cvv = document.getElementById('cvv').value;
+
+                const dadosCartao = {
+                    numeroCartao: numeroCartao,
+                    nomeTitular: nomeTitular,
+                    dataValidade: dataValidade,
+                    cvv: cvv
+                };
+
+                console.log('Dados do cartão (simulação):', dadosCartao);
+                alert('Pagamento com cartão simulado! Os dados seriam enviados para um processador de pagamento seguro.');
+                // No futuro, aqui você integraria com um serviço de pagamento real.
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+            }
+        });
+    </script>
+</body>
+</html>
